@@ -1,17 +1,56 @@
 # ===================================================================
-# Enhanced .gitignore for the T3 Shipyard Monorepo
+#               T3 Shipyard - Production .gitignore
 #
-# This file is structured to cover dependencies, build artifacts,
-# local environment secrets, caches, logs, and OS/editor-specific
-# files for a self-hosted, Dockerized T3 Stack.
+#  This file is aggressively configured to prevent secrets, build
+#  artifacts, and local-only files from ever entering the repository.
+#  It is a critical security and project health document.
 # ===================================================================
 
-# --- Dependencies & Lockfiles ---
+# --- 1. Security & Secrets (MOST IMPORTANT) ---
+#
+# Aggressively ignore all variations of environment variable files.
+# The `!` rule explicitly allows a non-sensitive example template.
+.env*
+!/.env.example
+!/.env.template
+
+# Ignore T3 Stack's validated environment files.
+# This prevents the exact leak of `env.mjs`.
+/src/env/
+/src/env.js
+/src/env.mjs
+
+# Ignore sensitive certificate and key files.
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Ignore common credentials and secrets files.
+*.gpg
+*.cred
+*.secret
+*secret*.json
+*secret*.yml
+*secret*.yaml
+
+# Ignore local-only Docker override files.
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# Ignore cloud provider credential directories and files.
+.aws/
+.gcp/
+*.keys
+
+
+# --- 2. Dependencies & Lockfiles ---
+#
 # Ignore the primary dependency folder.
-node_modules/
+/node_modules/
 
 # Ignore pnpm's virtual store.
-.pnpm-store/
+/.pnpm-store/
 
 # Prevent accidental commits of lockfiles from other package managers.
 # In a pnpm-driven monorepo, only pnpm-lock.yaml should be committed.
@@ -19,77 +58,65 @@ package-lock.json
 yarn.lock
 
 
-# --- Local Environment & Secrets ---
-# Ignore all .env files by default.
-# It is best practice to commit a .env.example or .env.template file.
-.env*
-!/.env.example
-!/.env.template
-
-# Ignore local-only Docker override files.
-docker-compose.override.yml
-docker-compose.override.yaml
-
-# Ignore sensitive certificate and key files.
-*.pem
-*.key
-
-# Ignore common credentials files.
-*.gpg
-*.cred
-
-
-# --- Build & Compilation Artifacts ---
+# --- 3. Build & Compilation Artifacts ---
+#
 # Ignore Next.js build and export outputs.
-.next/
-out/
+/.next/
+/out/
 
 # Ignore other common build output directories.
-dist/
-build/
+/dist/
+/build/
+/.vercel/
 
 
-# --- Caching ---
+# --- 4. Caching ---
+#
 # Ignore Turborepo's cache.
-.turbo/
+/.turbo/
 
 # Ignore TypeScript build cache files.
 *.tsbuildinfo
 
 
-# --- Logs & Reports ---
-# Ignore all log files.
+# --- 5. Logs & Reports ---
+#
+# Ignore all log files, which can sometimes contain sensitive info.
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+*-debug.log
 
 # Ignore test coverage reports.
-coverage/
-.nyc_output/
+/coverage/
+/.nyc_output/
 
 
-# --- Database ---
-# Ignore local database files, such as those used for SQLite testing.
+# --- 6. Database ---
+#
+# Ignore local database files, such as those used for local testing.
 *.db
 *.sqlite
 *.sqlite3
 
 
-# --- Operating System & Editor Files ---
-# Ignore macOS specific files.
+# --- 7. Operating System & Editor Files ---
+#
+# macOS specific files.
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# Ignore Windows specific files.
+# Windows specific files.
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 *.lnk
 
-# Ignore editor-specific configuration folders.
+# Editor-specific configuration folders.
+# The `!` rules allow sharing beneficial settings with the team.
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -99,12 +126,10 @@ ehthumbs_vista.db
 *.sublime-project
 *.sublime-workspace
 
-# Ignore legacy Vercel directory, just in case.
-.vercel
 
-
-# --- Miscellaneous ---
-# Ignore compressed files and archives.
+# --- 8. Miscellaneous ---
+#
+# Ignore compressed files and archives which should not be in version control.
 *.zip
 *.tar
 *.gz
