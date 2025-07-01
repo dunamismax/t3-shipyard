@@ -52,86 +52,31 @@ The repository is organized to support a scalable and maintainable monorepo arch
 
 ```sh
 t3-shipyard/
-├── apps/                               # Individual Next.js applications
-│   ├── admin/                          # Internal admin panel application
-│   │   ├── .eslintrc.cjs
-│   │   ├── next.config.mjs
-│   │   ├── package.json
-│   │   ├── postcss.config.cjs
-│   │   ├── README.md
-│   │   ├── tailwind.config.ts
-│   │   ├── tsconfig.json
-│   │   └── prisma/
-│   │       └── schema.prisma
-│   ├── blog/                           # Blog application
-│   │   ├── .eslintrc.cjs
-│   │   ├── next.config.mjs
-│   │   ├── package.json
-│   │   ├── postcss.config.cjs
-│   │   ├── README.md
-│   │   ├── tailwind.config.ts
-│   │   ├── tsconfig.json
-│   │   └── prisma/
-│   │       └── schema.prisma
-│   ├── dashboard/                      # Internal dashboard application
-│   │   ├── .eslintrc.cjs
-│   │   ├── next.config.mjs
-│   │   ├── package.json
-│   │   ├── postcss.config.cjs
-│   │   ├── README.md
-│   │   ├── tailwind.config.ts
-│   │   ├── tsconfig.json
-│   │   └── prisma/
-│   │       └── schema.prisma
-│   ├── dunamismax.com/                 # Personal blog and portfolio website
-│   │   ├── .eslintrc.cjs
-│   │   ├── eslint.config.mjs
-│   │   ├── next-env.d.ts
-│   │   ├── next.config.ts
-│   │   ├── package.json
-│   │   ├── pnpm-lock.yaml
-│   │   ├── postcss.config.mjs
-│   │   ├── README.md
-│   │   ├── tailwind.config.ts
-│   │   ├── tsconfig.json
-│   │   ├── prisma/
-│   │   │   └── schema.prisma
-│   │   └── public/
-│   │       ├── file.svg
-│   │       ├── globe.svg
-│   │       ├── next.svg
-│   │       ├── vercel.svg
-│   │       └── window.svg
-│   ├── trpchat/                        # Real-time chat application
-│   │   ├── .eslintrc.cjs
-│   │   ├── next.config.mjs
-│   │   ├── package.json
-│   │   ├── postcss.config.cjs
-│   │   ├── README.md
-│   │   ├── tailwind.config.ts
-│   │   ├── tsconfig.json
-│   │   └── prisma/
-│   │       └── schema.prisma
-│   └── web/                            # Marketing website application
-│       ├── .eslintrc.cjs
-│       ├── next.config.mjs
-│       ├── package.json
-│       ├── postcss.config.cjs
-│       ├── README.md
-│       ├── tailwind.config.ts
-│       ├── tsconfig.json
-│       └── prisma/
-│           └── schema.prisma
-├── .git/                               # Git version control
-├── .gitignore                          # Git ignore rules
-├── .prettierignore                     # Prettier ignore rules
-├── .prettierrc.cjs                     # Prettier configuration
-├── env.mjs                             # Environment variables
-├── LICENSE                             # Project license
-├── package.json                        # Root pnpm package configuration
-├── pnpm-workspace.yaml                 # pnpm workspace configuration
-├── tsconfig.json                       # Root TypeScript configuration
-└── turbo.json                          # Turborepo configuration
+��── apps/
+│   ├── admin/
+│   ├── blog/
+│   ├── codecaddy/
+│   ├── dashboard/
+│   ├── dunamismax.com/
+│   ├── trpchat/
+│   └── web/
+├── packages/
+│   ├── config-eslint/
+│   └── config-typescript/
+├── docs/
+├── systemd/
+├── .gitignore
+├── .prettierignore
+├── .prettierrc.cjs
+├── Caddyfile
+├── env.mjs
+├── eslint.config.js
+├── LICENSE
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── tsconfig.json
+└── turbo.json
 ```
 
 </details>
@@ -169,7 +114,7 @@ This monorepo leverages the T3 Stack, optimized for performance and developer ex
 - **Version Control:** [Git](https://git-scm.com/doc) & [GitHub](https://docs.github.com/en)
 - **Code Editor:** [VS Code](https://code.visualstudio.com/docs) or [WebStorm](https://www.jetbrains.com/webstorm/documentation/)
 - **Database GUI:** [TablePlus](https://tableplus.com/docs/)
-- **CLI Tools:** Package Manager Scripts ([npm](https://docs.npmjs.com/cli/v10/using-npm/scripts)) & [Prisma CLI](https://www.prisma.io/docs/reference/cli-reference)
+- **CLI Tools:** Package Manager Scripts ([pnpm](https://pnpm.io/)) & [Prisma CLI](https://www.prisma.io/docs/reference/cli-reference)
 
 ### IV. Quality Assurance & Code Standards
 
@@ -212,14 +157,14 @@ To get started with this monorepo, follow the steps below.
    After building, you can start each application independently using PM2. First, install PM2 globally:
 
    ```bash
-   npm install -g pm2
+   pnpm install -g pm2
    ```
 
    Then, for each application, navigate to its directory and start it with PM2. For example, for the `admin` app:
 
    ```bash
    cd apps/admin
-   pm2 start npm --name "admin-app" -- start
+   pm2 start pnpm --name "admin-app" -- start
    ```
 
    Repeat this process for `blog`, `dashboard`, `dunamismax.com`, and `web` apps, adjusting the `--name` and `cd` path accordingly.
@@ -243,7 +188,7 @@ To get started with this monorepo, follow the steps below.
 
    ```caddy
    dunamismax.com {
-       reverse_proxy localhost:3000 # Adjust port for each app
+       reverse_proxy localhost:3005 # Adjust port for each app
    }
    ```
 
@@ -263,6 +208,10 @@ A dedicated application for managing users, content, and system settings. This a
 
 A content-focused application for publishing articles and updates. This app features dynamic content rendering, tRPC queries and mutations for post management, and basic SEO considerations.
 
+### [CodeCaddy Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/codecaddy)
+
+A minimalist and fast platform for developers to publicly save, tag, and discover code snippets.
+
 ### [Dashboard Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/dashboard)
 
 An internal dashboard for administrative tasks and data visualization. This application demonstrates authenticated routes and complex data interactions, providing a robust interface for internal operations.
@@ -271,17 +220,13 @@ An internal dashboard for administrative tasks and data visualization. This appl
 
 My personal blog and developer portfolio website. This application showcases my work, articles, and serves as a comprehensive online presence.
 
-### [Web Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/web)
-
-The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application.
-
 ### [trpchat Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/trpchat)
 
 A real-time chat application similar to Slack or Discord, built to explore WebSockets with tRPC for real-time communication.
 
-### [CodeCaddy Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/codecaddy)
+### [Web Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/web)
 
-A minimalist and fast platform for developers to publicly save, tag, and discover code snippets.
+The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application.
 
 ---
 

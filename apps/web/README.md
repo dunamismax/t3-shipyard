@@ -6,93 +6,84 @@
 
 ## Overview
 
-This application showcases public-facing content and features.
+The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application built with the Next.js App Router.
 
 ## Getting Started
 
 To run this application locally, follow these steps:
 
-1. **Install dependencies**:
+1. **Navigate to the app directory**:
+   ```bash
+   cd apps/web
+   ```
 
+2. **Install dependencies**:
    ```bash
    pnpm install
    ```
 
-2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
-
+3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/web/.env`) and add your database URL:
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_web"
    ```
 
-3. **Run database migrations and generate Prisma client**:
-
+4. **Push database schema**:
    ```bash
    pnpm db:push
-   pnpm db:generate
    ```
 
-4. **Run the development server**:
-
+5. **Run the development server**:
    ```bash
    pnpm dev
    ```
 
-   The application will be accessible at `http://localhost:3000`.
+The application will be accessible at `http://localhost:3000`.
 
-## Project Structure
+## Project Structure (App Router)
 
 ```sh
 apps/web/
+├── prisma/
+│   └── schema.prisma
+├── public/
+│   └── favicon.ico
 ├── src/
-│   ├── pages/                  # Next.js pages (routes)
-│   │   ├── api/                # API routes (tRPC endpoint)
-│   │   │   └── trpc/
-│   │   │       └── [trpc].ts
-│   │   ├── _app.tsx            # Custom App component
-│   │   └── index.tsx           # Home page
-│   ├── components/             # Reusable React components
-│   │   └── Navbar.tsx
-│   ├── server/                 # Backend-related code
-│   │   ├── api/                # tRPC API definitions
-│   │   │   ├── routers/        # Individual tRPC routers
+│   ├── app/
+│   │   ├── api/trpc/[trpc]/route.ts # tRPC route handler
+│   │   ├── layout.tsx               # Root layout with TRPCReactProvider
+│   │   └── page.tsx                 # Main application page
+│   ├── components/
+│   │   └── ui/                      # Shared UI components
+│   ├── server/
+│   │   ├── api/
+│   │   │   ├── root.ts              # Main tRPC router
+│   │   │   ├── routers/
 │   │   │   │   └── example.ts
-│   │   │   ├── root.ts         # Root tRPC router
-│   │   │   └── trpc.ts         # tRPC context and procedures
-│   │   ├── auth/               # Authentication setup (NextAuth.js)
-│   │   │   └── index.ts
-│   │   └── db/                 # Database client setup
-│   │       └── client.ts
-│   ├── styles/                 # Global styles
+│   │   │   └── trpc.ts              # tRPC context and procedures
+│   │   └── db/
+│   │       └── index.ts             # Prisma client instance
+│   ├── styles/
 │   │   └── globals.css
-│   └── utils/                  # Utility functions (e.g., tRPC client setup)
-│       └── api.ts
-├── next.config.mjs             # Next.js configuration
-├── package.json                # Package dependencies and scripts
-├── postcss.config.cjs          # PostCSS configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── .eslintrc.cjs               # ESLint configuration
-├── tsconfig.json               # TypeScript configuration
-└── README.md                   # This README file
+│   ├── trpc/
+│   │   └── react.tsx                # tRPC client provider
+│   └── utils/
+│       └── index.ts                 # Utility functions
+├── next.config.mjs
+├── package.json
+├── postcss.config.cjs
+├── tailwind.config.ts
+└── tsconfig.json
 ```
-
-## Learn More
-
-- [T3 Stack Documentation](https://create.t3.gg/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [tRPC Documentation](https://trpc.io/docs)
-- [Prisma Documentation](https://www.prisma.io/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-
----
-
-**[&#8593; Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file#projects-overview)**
 
 ## Tech Stack
 
-This application is built using the following core technologies:
-
-- **Next.js**
+- **Next.js (App Router)**
 - **TypeScript**
 - **tRPC**
 - **Prisma**
 - **Tailwind CSS**
+- **Shadcn/ui**
+
+---
+
+**[⬆️ Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file#projects-overview)**

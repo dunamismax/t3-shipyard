@@ -6,101 +6,87 @@
 
 ## Overview
 
-This application provides a dedicated interface for managing users, content, and system settings. It demonstrates robust authentication with NextAuth.js, protected tRPC routes, and user management features.
+This application provides a dedicated interface for managing users, content, and system settings. It demonstrates robust authentication, protected tRPC routes, and user management features, all built with the Next.js App Router.
 
 ## Getting Started
 
 To run this application locally, follow these steps:
 
-1. **Install dependencies**:
+1. **Navigate to the app directory**:
+   ```bash
+   cd apps/admin
+   ```
 
+2. **Install dependencies**:
    ```bash
    pnpm install
    ```
 
-2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
-
+3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/admin/.env`) and add the following:
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_admin"
-   NEXTAUTH_SECRET="YOUR_NEXTAUTH_SECRET" # Generate a strong secret: openssl rand -base64 32
-   NEXTAUTH_URL="http://localhost:3001" # Or your deployment URL
+   # NEXTAUTH_SECRET is not required with tRPC
+   NEXTAUTH_URL="http://localhost:3001"
    ```
 
-3. **Run database migrations and generate Prisma client**:
-
+4. **Push database schema**:
    ```bash
    pnpm db:push
-   pnpm db:generate
    ```
 
-4. **Run the development server**:
-
+5. **Run the development server**:
    ```bash
    pnpm dev
    ```
 
-   The application will be accessible at `http://localhost:3001`.
+The application will be accessible at `http://localhost:3001`.
 
-## Project Structure
+## Project Structure (App Router)
 
 ```sh
 apps/admin/
+├── prisma/
+│   └── schema.prisma
+├── public/
+│   └── favicon.ico
 ├── src/
-│   ├── pages/                  # Next.js pages (routes)
-│   │   ├── api/                # API routes (tRPC endpoint, NextAuth.js API)
-│   │   │   ├── auth/           # NextAuth.js API routes
-│   │   │   │   └── [...nextauth].ts
-│   │   │   └── trpc/
-│   │   │       └── [trpc].ts
-│   │   ├── _app.tsx            # Custom App component
-│   │   ├── index.tsx           # Home page
-│   │   └── users.tsx           # User management page
-│   ├── components/             # Reusable React components
-│   │   └── Navbar.tsx
-│   ├── server/                 # Backend-related code
-│   │   ├── api/                # tRPC API definitions
-│   │   │   ├── routers/        # Individual tRPC routers
+│   ├── app/
+│   │   ├── api/trpc/[trpc]/route.ts # tRPC route handler
+│   │   ├── layout.tsx               # Root layout with TRPCReactProvider
+│   │   └── page.tsx                 # Main application page
+│   ├── components/
+│   │   └── ui/                      # Shared UI components
+│   ├── server/
+│   │   ├── api/
+│   │   │   ├── root.ts              # Main tRPC router
+│   │   │   ├── routers/
 │   │   │   │   ├── example.ts
 │   │   │   │   └── user.ts
-│   │   │   ├── root.ts         # Root tRPC router
-│   │   │   └── trpc.ts         # tRPC context and procedures
-│   │   ├── auth/               # Authentication setup (NextAuth.js)
-│   │   │   └── index.ts
-│   │   └── db/                 # Database client setup
-│   │       └── client.ts
-│   ├── styles/                 # Global styles
+│   │   │   └── trpc.ts              # tRPC context and procedures
+│   │   └── db/
+│   │       └── index.ts             # Prisma client instance
+│   ├── styles/
 │   │   └── globals.css
-│   └── utils/                  # Utility functions (e.g., tRPC client setup)
-│       └── api.ts
-├── next.config.mjs             # Next.js configuration
-├── package.json                # Package dependencies and scripts
-├── postcss.config.cjs          # PostCSS configuration
-├── tailwind.config.ts          # Tailwind CSS configuration
-├── .eslintrc.cjs               # ESLint configuration
-├── tsconfig.json               # TypeScript configuration
-└── README.md                   # This README file
+│   ├── trpc/
+│   │   └── react.tsx                # tRPC client provider
+│   └── utils/
+│       └── index.ts                 # Utility functions
+├── next.config.mjs
+├── package.json
+├── postcss.config.cjs
+├── tailwind.config.ts
+└── tsconfig.json
 ```
-
-## Learn More
-
-- [T3 Stack Documentation](https://create.t3.gg/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [tRPC Documentation](https://trpc.io/docs)
-- [Prisma Documentation](https://www.prisma.io/docs)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [NextAuth.js Documentation](https://next-auth.js.org/)
-
----
-
-**[&#8593; Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file#projects-overview)**
 
 ## Tech Stack
 
-This application is built using the following core technologies:
-
-- **Next.js**
+- **Next.js (App Router)**
 - **TypeScript**
 - **tRPC**
 - **Prisma**
 - **Tailwind CSS**
-- **NextAuth.js**
+- **Shadcn/ui**
+
+---
+
+**[⬆️ Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file#projects-overview)**
