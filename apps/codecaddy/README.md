@@ -20,7 +20,7 @@ To run this application locally, follow these steps:
 
 2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
 
-   ```
+   ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_codecaddy"
    ```
 
@@ -41,7 +41,7 @@ To run this application locally, follow these steps:
 
 ## Project Structure
 
-```
+```sh
 apps/codecaddy/
 ├── src/
 │   ├── pages/                  # Next.js pages (routes)

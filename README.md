@@ -50,7 +50,7 @@ The repository is organized to support a scalable and maintainable monorepo arch
 <details>
 <summary><strong>Click to expand repository layout</strong></summary>
 
-```
+```sh
 t3-shipyard/
 ├── apps/                               # Individual Next.js applications
 │   ├── admin/                          # Internal admin panel application
