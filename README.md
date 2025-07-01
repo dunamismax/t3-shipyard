@@ -1,6 +1,6 @@
 # t3-shipyard
 
-Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js applications, leveraging a shared architecture for efficient, scalable, and maintainable project management.
+Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js applications, each designed to be independent and self-contained for efficient, scalable, and maintainable project management.
 
 [![Framework: Next.js](https://img.shields.io/badge/Framework-Next.js-000000.svg)](https://nextjs.org/)
 [![Language: TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6.svg)](https://www.typescriptlang.org/)
@@ -28,7 +28,7 @@ Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js ap
 
 ## Introduction
 
-This monorepo serves as the foundation for my full-stack, type-safe web development projects using the T3 Stack. By using a monorepo, I can efficiently manage multiple Next.js applications that share common dependencies and configurations. This approach enhances code reusability, enforces consistency, and simplifies the overall development workflow.
+This monorepo serves as the foundation for my full-stack, type-safe web development projects using the T3 Stack. Each Next.js application within this repository is designed to be independent and self-contained, with its own dependencies and configurations. This approach ensures maximum isolation and flexibility for deployment, while still benefiting from a centralized repository for efficient management.
 
 ---
 
@@ -170,13 +170,17 @@ To get started with this monorepo, follow the steps below.
     cd t3-shipyard
     ```
 
-2. **Install Dependencies**
+2. **Install Dependencies**:
+
+    From the root of the monorepo, install all dependencies for all applications:
 
     ```bash
     pnpm install
     ```
 
-3. **Build Applications**
+3. **Build Applications**:
+
+    From the root of the monorepo, build all applications for production:
 
     ```bash
     pnpm build
