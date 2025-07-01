@@ -30,7 +30,7 @@ Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js ap
 
 ## Introduction
 
-This monorepo serves as the foundation for my full-stack, type-safe web development projects using the T3 Stack. By leveraging a monorepo setup with pnpm and Turborepo, I can efficiently manage multiple Next.js applications that share common dependencies, configurations, and utilities. This approach enhances code reusability, enforces consistency, and simplifies the overall development workflow.
+This monorepo serves as the foundation for my full-stack, type-safe web development projects using the T3 Stack, with a strong emphasis on AI-assisted development. By leveraging a monorepo setup with pnpm and Turborepo, I can efficiently manage multiple Next.js applications that share common dependencies, configurations, and utilities. This approach enhances code reusability, enforces consistency, and simplifies the overall development workflow.
 
 ---
 
@@ -122,34 +122,88 @@ t3-shipyard/
 
 ## Tech Stack
 
-This monorepo leverages the T3 Stack, optimized for performance and developer experience.
+This monorepo leverages the T3 Stack, optimized for performance and developer experience, with a focus on AI-assisted development and self-hosting.
 
 ### I. Core Infrastructure & Backend
 
--   **Framework**: [Next.js](https://nextjs.org)
--   **Language**: [TypeScript](https://www.typescriptlang.org)
--   **API Layer**: [tRPC](https://trpc.io)
--   **Database ORM**: [Prisma](https://prisma.io)
--   **Database**: [PostgreSQL](https://www.postgresql.org)
--   **Hosting**: Self-Hosted on Ubuntu via [Docker](https://www.docker.com), [PM2](https://pm2.keymetrics.io), and [Caddy](https://caddyserver.com)
+-   **Full-Stack Framework**: [**Next.js**](https://nextjs.org/docs) (Latest stable release, 14+)
+-   **Programming Language**: [**TypeScript**](https://www.typescriptlang.org/docs/) (Latest stable version, 5.0+)
+-   **Application Server & Runtime**: [**Node.js**](https://nodejs.org/en/docs/) (Latest LTS)
+-   **Containerization**: [**Docker**](https://docs.docker.com/) & [**Docker Compose**](https://docs.docker.com/compose/)
+-   **Production Process Manager**: [**PM2**](https://pm2.keymetrics.io/docs/usage/quick-start/)
+-   **Web Server (Reverse Proxy)**: [**Caddy**](https://caddyserver.com/docs/) or [**Nginx**](https://nginx.org/en/docs/)
+-   **Database**: [**PostgreSQL**](https://www.postgresql.org/docs/) (16+)
+-   **ORM & Data Access**: [**Prisma**](https://www.prisma.io/docs/)
+-   **In-Memory Data Store**: [**Redis**](https://redis.io/docs/)
+-   **Operating System**: [**Ubuntu Server**](https://ubuntu.com/server/docs) (Latest LTS)
 
 ### II. Frontend & User Interface
 
--   **Styling**: [Tailwind CSS](https://tailwindcss.com)
--   **UI Components**: Custom shared UI package (`@t3-shipyard/ui`)
+-   **Frontend Build Tool**: [**Next.js Compiler (SWC)**](https://nextjs.org/docs/architecture/compiler)
+-   **Dynamic UI Framework**: [**React**](https://react.dev/learn)
+-   **API Layer**: [**tRPC**](https://trpc.io/docs/)
+-   **CSS Framework**: [**Tailwind CSS**](https://tailwindcss.com/docs/installation)
+-   **Component Library**: [**Shadcn/ui**](https://ui.shadcn.com/docs)
 
 ### III. Monorepo Tools
 
--   **Package Manager**: [pnpm](https://pnpm.io)
--   **Task Runner**: [Turborepo](https://turbo.build)
+-   **Package Manager**: [**pnpm**](https://pnpm.io)
+-   **Task Runner**: [**Turborepo**](https://turbo.build)
 
 ### IV. Development Environment & Tools
 
--   **Version Control**: [Git](https://git-scm.com/doc) & [GitHub](https://docs.github.com/en)
--   **Code Editor / IDE**: [VS Code](https://code.visualstudio.com/docs)
--   **Local Environment**: [Docker Compose](https://docs.docker.com/compose/)
--   **Code Formatter**: [Prettier](https://prettier.io/)
--   **Code Linter**: [ESLint](https://eslint.org/)
+-   **Local Environment Orchestration**: [**Docker Compose**](https://docs.docker.com/compose/gettingstarted/)
+-   **Version Control**: [**Git**](https://git-scm.com/doc) & [**GitHub**](https://docs.github.com/en)
+-   **Code Editor / IDE**: [**VS Code**](https://code.visualstudio.com/docs) or [**WebStorm**](https://www.jetbrains.com/webstorm/documentation/)
+-   **Database GUI**: [**TablePlus**](https://tableplus.com/docs/) or [**DBeaver**](https://dbeaver.io/docs/)
+-   **CLI Tools**: Package Manager Scripts ([npm](https://docs.npmjs.com/cli/v10/using-npm/scripts), [pnpm](https://pnpm.io/using-npmrc), [yarn](https://yarnpkg.com/cli/run)) & [**Prisma CLI**](https://www.prisma.io/docs/reference/cli-reference)
+
+---
+
+## V. Quality Assurance & Code Standards
+
+Tools to enforce type safety, code quality, and application stability, which are critical for an AI-assisted workflow.
+
+### 1. Testing Frameworks
+
+-   **Technology**: [**Jest**](https://jestjs.io/docs/getting-started) & [**Playwright**](https://playwright.dev/docs/intro)
+-   **Description**: Jest is the standard for unit and integration testing React components and backend logic. Playwright is used for robust, browser-level end-to-end testing of the complete application flow.
+
+### 2. Static Analysis
+
+-   **Technology**: [**TypeScript Compiler (tsc)**](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+-   **Description**: The primary static analysis tool. Running `tsc --noEmit` checks the entire project for type errors, acting as the first and most important line of defense against bugs.
+
+### 3. Code Linters & Formatters
+
+-   **Technology**: [**ESLint**](https://eslint.org/docs/latest/user-guide/getting-started) & [**Prettier**](https://prettier.io/docs/en/)
+-   **Description**: ESLint enforces code quality and consistency rules. Prettier is an opinionated code formatter that automates all styling, ensuring a clean, readable, and consistent codebase with zero effort.
+
+### 4. Debugging Tools
+
+-   **Technology**: [**VS Code Debugger**](https://code.visualstudio.com/docs/editor/debugging) & [**React Developer Tools**](https://react.dev/learn/react-developer-tools)
+-   **Description**: VS Code provides a first-class, built-in Node.js debugger for step-debugging backend code (API routes and server-side logic). The React DevTools browser extension is essential for inspecting the component tree and state.
+
+---
+
+## V. AI-Assisted Development Workflow
+
+A structured workflow that maximizes development speed by leveraging an AI coding assistant, with the stack's type safety acting as a real-time validator.
+
+### 1. AI Agent-Led Architecture & Scaffolding
+
+-   **Technology**: Prisma Schema & Developer Expertise
+-   **Description**: The developer and/or Agent define the data models in `schema.prisma`. The developer runs `prisma migrate dev` to create migrations and generate the fully type-safe client. The developer then creates the necessary file stubs (e.g., `app/users/page.tsx`, `server/api/routers/user.ts`).
+
+### 2. AI Agent-Written Implementation
+
+-   **Technology**: AI Coding Assistant (Gemini CLI, GitHub Copilot)
+-   **Description**: With the files and strong type definitions in place (from Prisma and tRPC), the AI Agent is prompted to write the implementation details. The types guide the AI, dramatically improving the accuracy and relevance of its output for React components, API procedures, and database queries.
+
+### 3. Developer-Driven Review & Refinement
+
+-   **Technology**: The Full QA Stack (TypeScript, ESLint, Prettier, Jest)
+-   **Description**: The developer acts as the lead reviewer and architect. All AI-generated code is instantly validated by the TypeScript compiler and ESLint directly within the IDE. This immediate, type-safe feedback loop allows the developer to rapidly refactor and test the code, using the AI as an intelligent pair programmer to ensure the final output is robust, maintainable, and production-ready.
 
 ---
 
