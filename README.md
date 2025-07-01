@@ -15,14 +15,14 @@ Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js ap
 
 ## Table of Contents
 
--   [Introduction](#introduction)
--   [Repository Structure](#repository-structure)
--   [Tech Stack](#tech-stack)
--   [Getting Started](#getting-started)
--   [Projects Overview](#projects-overview)
--   [Contributing](#contributing)
--   [Connect](#connect)
--   [License](#license)
+- [Introduction](#introduction)
+- [Repository Structure](#repository-structure)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Projects Overview](#projects-overview)
+- [Contributing](#contributing)
+- [Connect](#connect)
+- [License](#license)
 
 ---
 
@@ -123,39 +123,39 @@ This monorepo leverages the T3 Stack, optimized for performance and developer ex
 
 ### I. Core Infrastructure & Backend
 
--   **Full-Stack Framework:** [Next.js](https://nextjs.org/docs) (14+)
--   **Programming Language:** [TypeScript](https://www.typescriptlang.org/docs/) (5.0+)
--   **Application Server & Runtime:** [Node.js](https://nodejs.org/en/docs/) (Latest LTS)
--   **Operating System:** [Ubuntu Server](https://ubuntu.com/server/docs) (Latest LTS)
--   **Service Management:** [systemd](https://www.freedesktop.org/wiki/Software/systemd/)
--   **Production Process Manager:** [PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)
--   **Web Server (Reverse Proxy):** [Caddy](https://caddyserver.com/docs/)
--   **Database:** [PostgreSQL](https://www.postgresql.org/docs/) (16+)
--   **ORM & Data Access:** [Prisma](https://www.prisma.io/docs/)
--   **In-Memory Data Store:** [Redis](https://redis.io/docs/)
+- **Full-Stack Framework:** [Next.js](https://nextjs.org/docs) (14+)
+- **Programming Language:** [TypeScript](https://www.typescriptlang.org/docs/) (5.0+)
+- **Application Server & Runtime:** [Node.js](https://nodejs.org/en/docs/) (Latest LTS)
+- **Operating System:** [Ubuntu Server](https://ubuntu.com/server/docs) (Latest LTS)
+- **Service Management:** [systemd](https://www.freedesktop.org/wiki/Software/systemd/)
+- **Production Process Manager:** [PM2](https://pm2.keymetrics.io/docs/usage/quick-start/)
+- **Web Server (Reverse Proxy):** [Caddy](https://caddyserver.com/docs/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/docs/) (16+)
+- **ORM & Data Access:** [Prisma](https://www.prisma.io/docs/)
+- **In-Memory Data Store:** [Redis](https://redis.io/docs/)
 
 ### II. Frontend & User Interface
 
--   **UI Framework:** [React](https://react.dev/learn)
--   **API Layer:** [tRPC](https://trpc.io/docs/)
--   **CSS Framework:** [Tailwind CSS](https://tailwindcss.com/docs/)
--   **Component Library:** [Shadcn/ui](https://ui.shadcn.com/docs)
--   **Build Tool:** [Next.js Compiler (SWC)](https://nextjs.org/docs/architecture/compiler)
+- **UI Framework:** [React](https://react.dev/learn)
+- **API Layer:** [tRPC](https://trpc.io/docs/)
+- **CSS Framework:** [Tailwind CSS](https://tailwindcss.com/docs/)
+- **Component Library:** [Shadcn/ui](https://ui.shadcn.com/docs)
+- **Build Tool:** [Next.js Compiler (SWC)](https://nextjs.org/docs/architecture/compiler)
 
 ### III. Development Environment & Tools
 
--   **Local Services Setup:** Locally Installed Services (PostgreSQL, Redis)
--   **Version Control:** [Git](https://git-scm.com/doc) & [GitHub](https://docs.github.com/en)
--   **Code Editor:** [VS Code](https://code.visualstudio.com/docs) or [WebStorm](https://www.jetbrains.com/webstorm/documentation/)
--   **Database GUI:** [TablePlus](https://tableplus.com/docs/)
--   **CLI Tools:** Package Manager Scripts ([npm](https://docs.npmjs.com/cli/v10/using-npm/scripts)) & [Prisma CLI](https://www.prisma.io/docs/reference/cli-reference)
+- **Local Services Setup:** Locally Installed Services (PostgreSQL, Redis)
+- **Version Control:** [Git](https://git-scm.com/doc) & [GitHub](https://docs.github.com/en)
+- **Code Editor:** [VS Code](https://code.visualstudio.com/docs) or [WebStorm](https://www.jetbrains.com/webstorm/documentation/)
+- **Database GUI:** [TablePlus](https://tableplus.com/docs/)
+- **CLI Tools:** Package Manager Scripts ([npm](https://docs.npmjs.com/cli/v10/using-npm/scripts)) & [Prisma CLI](https://www.prisma.io/docs/reference/cli-reference)
 
 ### IV. Quality Assurance & Code Standards
 
--   **Testing Frameworks:** [Jest](https://jestjs.io/docs/getting-started) & [Playwright](https://playwright.dev/docs/intro)
--   **Static Analysis:** [TypeScript Compiler (tsc)](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
--   **Code Linters & Formatters:** [ESLint](https://eslint.org/docs/latest/user-guide/getting-started) & [Prettier](https://prettier.io/docs/en/)
--   **Debugging Tools:** [VS Code Debugger](https://code.visualstudio.com/docs/editor/debugging) & [React Developer Tools](https://react.dev/learn/react-developer-tools)
+- **Testing Frameworks:** [Jest](https://jestjs.io/docs/getting-started) & [Playwright](https://playwright.dev/docs/intro)
+- **Static Analysis:** [TypeScript Compiler (tsc)](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
+- **Code Linters & Formatters:** [ESLint](https://eslint.org/docs/latest/user-guide/getting-started) & [Prettier](https://prettier.io/docs/en/)
+- **Debugging Tools:** [VS Code Debugger](https://code.visualstudio.com/docs/editor/debugging) & [React Developer Tools](https://react.dev/learn/react-developer-tools)
 
 ---
 
@@ -225,6 +225,7 @@ To get started with this monorepo, follow the steps below.
         reverse_proxy localhost:3000 # Adjust port for each app
     }
     ```
+
     You will need to add similar blocks for `blog.dunamismax.com`, `admin.dunamismax.com`, `dashboard.dunamismax.com`, and `web.dunamismax.com`, adjusting the port for each application.
 
 ---
@@ -271,11 +272,11 @@ Contributions are welcome! Please feel free to fork the repository, create a fea
 
 Connect with the author, **dunamismax**, on:
 
--   **Twitter:** [@dunamismax](https://twitter.com/dunamismax)
--   **Bluesky:** [@dunamismax.bsky.social](https://bsky.app/profile/dunamismax.bsky.social)
--   **Reddit:** [u/dunamismax](https://www.reddit.com/user/dunamismax)
--   **Discord:** `dunamismax`
--   **Signal:** `dunamismax.66`
+- **Twitter:** [@dunamismax](https://twitter.com/dunamismax)
+- **Bluesky:** [@dunamismax.bsky.social](https://bsky.app/profile/dunamismax.bsky.social)
+- **Reddit:** [u/dunamismax](https://www.reddit.com/user/dunamismax)
+- **Discord:** `dunamismax`
+- **Signal:** `dunamismax.66`
 
 ---
 

@@ -8,23 +8,27 @@ This application showcases public-facing content and features, built with Next.j
 
 To run this application locally, follow these steps:
 
-1.  **Install dependencies**:
+1. **Install dependencies**:
+
     ```bash
     pnpm install
     ```
 
-2.  **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
+2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
+
     ```
     DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_web"
     ```
 
-3.  **Run database migrations and generate Prisma client**:
+3. **Run database migrations and generate Prisma client**:
+
     ```bash
     pnpm db:push
     pnpm db:generate
     ```
 
-4.  **Run the development server**:
+4. **Run the development server**:
+
     ```bash
     pnpm dev
     ```
@@ -69,11 +73,11 @@ apps/web/
 
 ## Learn More
 
--   [T3 Stack Documentation](https://create.t3.gg/)
--   [Next.js Documentation](https://nextjs.org/docs)
--   [tRPC Documentation](https://trpc.io/docs)
--   [Prisma Documentation](https://www.prisma.io/docs)
--   [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [T3 Stack Documentation](https://create.t3.gg/)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [tRPC Documentation](https://trpc.io/docs)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
 ---
 
@@ -83,9 +87,8 @@ apps/web/
 
 This application is built using the following core technologies:
 
--   **Next.js**
--   **TypeScript**
--   **tRPC**
--   **Prisma**
--   **Tailwind CSS**
-
+- **Next.js**
+- **TypeScript**
+- **tRPC**
+- **Prisma**
+- **Tailwind CSS**
