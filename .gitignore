@@ -46,65 +46,37 @@ docker-compose.override.yaml
 
 # --- 2. Dependencies & Lockfiles ---
 #
-# Ignore all node_modules directories (monorepo pattern).
-node_modules/
+# Ignore the primary dependency folder.
+/node_modules/
 
-# Ignore pnpm's virtual store and cache.
-.pnpm-store/
-.pnpm/
+# Ignore pnpm's virtual store.
+/.pnpm-store/
 
 # Prevent accidental commits of lockfiles from other package managers.
 # In a pnpm-driven monorepo, only pnpm-lock.yaml should be committed.
 package-lock.json
 yarn.lock
 
-# Ignore temporary dependency installation files.
-.npm/
-.yarn/
-**/package-lock.json
-**/yarn.lock
-
 
 # --- 3. Build & Compilation Artifacts ---
 #
-# Ignore Next.js build and export outputs (all apps in monorepo).
-.next/
-out/
+# Ignore Next.js build and export outputs.
+/.next/
+/out/
 
 # Ignore other common build output directories.
-dist/
-build/
-.vercel/
-
-# Ignore Prisma generated client files.
-**/node_modules/.prisma/
-**/prisma/generated/
-
-# Ignore ESLint cache files.
-.eslintcache
-**/.eslintcache
+/dist/
+/build/
+/.vercel/
 
 
 # --- 4. Caching ---
 #
 # Ignore Turborepo's cache.
-.turbo/
+/.turbo/
 
 # Ignore TypeScript build cache files.
 *.tsbuildinfo
-
-# Ignore Next.js cache directories.
-**/.next/cache/
-
-# Ignore package manager caches.
-.pnpm-store/
-.npm/
-.yarn/
-**/.cache/
-
-# Ignore webpack and build tool caches.
-**/.webpack/
-**/webpack-stats.json
 
 
 # --- 5. Logs & Reports ---
@@ -155,26 +127,7 @@ ehthumbs_vista.db
 *.sublime-workspace
 
 
-# --- 8. T3 Stack & Next.js Specific ---
-#
-# Ignore Next.js generated type files.
-**/next-env.d.ts
-**/.next/types/
-
-# Ignore Prisma migrations in development.
-**/prisma/migrations/
-
-# Ignore tRPC generated files.
-**/src/generated/
-
-# Ignore Tailwind CSS generated files.
-**/tailwind.output.css
-
-# Ignore PostCSS generated files.
-**/postcss.output.css
-
-
-# --- 9. Miscellaneous ---
+# --- 8. Miscellaneous ---
 #
 # Ignore compressed files and archives which should not be in version control.
 *.zip
@@ -186,14 +139,9 @@ ehthumbs_vista.db
 # Ignore temporary files created by some text editors.
 *~
 *.swp
-*.tmp
-*.temp
 
-# Ignore local configuration overrides.
-*.local
-.local/
-
-# Ignore backup files.
-*.backup
-*.bak
-*~.nib
+# Ignore build folders in apps
+apps/*/build
+apps/*/.next
+apps/*/.vercel
+apps/*/out
