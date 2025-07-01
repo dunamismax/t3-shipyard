@@ -183,19 +183,19 @@ This monorepo hosts the following Next.js applications. Each is a self-contained
 
 ### [Web Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/web)
 
-The main marketing website for the project. This application showcases public-facing content and features.
+The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application within the monorepo.
 
 ### [Dashboard Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/dashboard)
 
-An internal dashboard for administrative tasks and data visualization. This application demonstrates authenticated routes and complex data interactions.
+An internal dashboard for administrative tasks and data visualization. This application demonstrates authenticated routes and complex data interactions, providing a robust interface for internal operations.
 
 ### [Blog Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/blog)
 
-A content-focused application for publishing articles and updates. This app will feature dynamic content rendering and SEO considerations.
+A content-focused application for publishing articles and updates. This app features dynamic content rendering, tRPC queries and mutations for post management, and basic SEO considerations.
 
 ### [Admin Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/admin)
 
-A dedicated application for managing users, content, and system settings. This application will provide a robust interface for backend operations.
+A dedicated application for managing users, content, and system settings. This application demonstrates robust authentication with NextAuth.js, protected tRPC routes, and user management features.
 
 ---
 
