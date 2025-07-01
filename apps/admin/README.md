@@ -13,16 +13,19 @@ This application provides a dedicated interface for managing users, content, and
 To run this application locally, follow these steps:
 
 1. **Navigate to the app directory**:
+
    ```bash
    cd apps/admin
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/admin/.env`) and add the following:
+
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_admin"
    # NEXTAUTH_SECRET is not required with tRPC
@@ -30,11 +33,13 @@ To run this application locally, follow these steps:
    ```
 
 4. **Push database schema**:
+
    ```bash
    pnpm db:push
    ```
 
 5. **Run the development server**:
+
    ```bash
    pnpm dev
    ```

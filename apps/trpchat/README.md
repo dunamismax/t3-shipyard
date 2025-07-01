@@ -13,31 +13,37 @@ This application is a real-time chat application similar to Slack or Discord. It
 To run this application locally, follow these steps:
 
 1. **Navigate to the app directory**:
+
    ```bash
    cd apps/trpchat
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/trpchat/.env`) and add your database URL:
+
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_trpchat"
    ```
 
 4. **Push database schema**:
+
    ```bash
    pnpm db:push
    ```
 
 5. **Start the WebSocket server**:
-    ```bash
-    pnpm ws-dev
-    ```
+
+   ```bash
+   pnpm ws-dev
+   ```
 
 6. **In a separate terminal, run the development server**:
+
    ```bash
    pnpm dev
    ```

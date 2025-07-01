@@ -13,26 +13,31 @@ CodeCaddy is a minimalist and fast platform for developers to publicly save, tag
 To run this application locally, follow these steps:
 
 1. **Navigate to the app directory**:
+
    ```bash
    cd apps/codecaddy
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/codecaddy/.env`) and add your database URL:
+
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_codecaddy"
    ```
 
 4. **Push database schema**:
+
    ```bash
    pnpm db:push
    ```
 
 5. **Run the development server**:
+
    ```bash
    pnpm dev
    ```

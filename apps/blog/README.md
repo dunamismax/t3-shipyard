@@ -13,26 +13,31 @@ This application is a content-focused platform for publishing articles and updat
 To run this application locally, follow these steps:
 
 1. **Navigate to the app directory**:
+
    ```bash
    cd apps/blog
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/blog/.env`) and add your database URL:
+
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_blog"
    ```
 
 4. **Push database schema**:
+
    ```bash
    pnpm db:push
    ```
 
 5. **Run the development server**:
+
    ```bash
    pnpm dev
    ```

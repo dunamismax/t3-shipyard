@@ -13,27 +13,32 @@ My personal blog and developer portfolio website. This application showcases my 
 To run this application locally, follow these steps:
 
 1. **Navigate to the app directory**:
+
    ```bash
    cd apps/dunamismax.com
    ```
 
 2. **Install dependencies**:
+
    ```bash
    pnpm install
    ```
 
 3. **Configure Environment Variables**: Create a `.env` file in this directory (`apps/dunamismax.com/.env`) and add the following:
+
    ```sh
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_dunamismax"
    NEXTAUTH_URL="http://localhost:3005"
    ```
 
 4. **Push database schema**:
+
    ```bash
    pnpm db:push
    ```
 
 5. **Run the development server**:
+
    ```bash
    pnpm dev
    ```
