@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.14.0",
-    "@t3-shipyard/db": "workspace:^",
-    "@t3-shipyard/ui": "workspace:^",
+    
     "@tanstack/react-query": "^5.32.0",
     "@trpc/client": "^10.45.2",
     "@trpc/react-query": "^10.45.2",
