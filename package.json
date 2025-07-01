@@ -16,9 +16,5 @@
     "turbo": "^2.0.4",
     "typescript": "^5.4.5"
   },
-  "packageManager": "pnpm @9.1.0",
-  "dependencies": {
-    "@prisma/client": "^6.10.1",
-    "pnpm": "^10.12.4"
-  }
+  "packageManager": "pnpm@9.1.0"
 }
