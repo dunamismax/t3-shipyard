@@ -1,23 +1,23 @@
-import Head from "next/head";
-import Link from "next/link";
-import { api } from "../utils/api";
-import { useState } from "react";
+import Head from 'next/head'
+import Link from 'next/link'
+import { api } from '../utils/api'
+import { useState } from 'react'
 
 const CreatePostForm: React.FC = () => {
-  const [postName, setPostName] = useState("");
-  const utils = api.useUtils();
+  const [postName, setPostName] = useState('')
+  const utils = api.useUtils()
   const createPost = api.post.create.useMutation({
     onSuccess: () => {
-      setPostName("");
-      void utils.post.getAll.invalidate();
+      setPostName('')
+      void utils.post.getAll.invalidate()
     },
-  });
+  })
 
   return (
     <form
       onSubmit={(e) => {
-        e.preventDefault();
-        createPost.mutate({ name: postName });
+        e.preventDefault()
+        createPost.mutate({ name: postName })
       }}
       className="mb-8 flex w-full max-w-2xl flex-col gap-4 rounded-lg bg-white p-6 shadow-md"
     >
@@ -34,19 +34,21 @@ const CreatePostForm: React.FC = () => {
         className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
         disabled={createPost.isLoading}
       >
-        {createPost.isLoading ? "Creating..." : "Create Post"}
+        {createPost.isLoading ? 'Creating...' : 'Create Post'}
       </button>
       {createPost.isError && (
-        <p className="text-red-500">Error creating post: {createPost.error?.message}</p>
+        <p className="text-red-500">
+          Error creating post: {createPost.error?.message}
+        </p>
       )}
     </form>
-  );
-};
+  )
+}
 
 export default function Home() {
-  const { data: posts, isLoading } = api.post.getAll.useQuery();
+  const { data: posts, isLoading } = api.post.getAll.useQuery()
 
-  if (isLoading) return <div>Loading posts...</div>;
+  if (isLoading) return <div>Loading posts...</div>
 
   return (
     <>
@@ -67,12 +69,16 @@ export default function Home() {
               href={`/posts/${post.id}`}
               className="block rounded-lg bg-white p-6 shadow-md transition-shadow duration-200 hover:shadow-lg"
             >
-              <h2 className="mb-2 text-2xl font-bold text-gray-800">{post.name}</h2>
-              <p className="text-sm text-gray-600">Published: {new Date(post.createdAt).toLocaleDateString()}</p>
+              <h2 className="mb-2 text-2xl font-bold text-gray-800">
+                {post.name}
+              </h2>
+              <p className="text-sm text-gray-600">
+                Published: {new Date(post.createdAt).toLocaleDateString()}
+              </p>
             </Link>
           ))}
         </div>
       </main>
     </>
-  );
+  )
 }

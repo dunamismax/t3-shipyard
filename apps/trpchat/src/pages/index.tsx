@@ -1,21 +1,22 @@
-
-import { useState } from "react";
-import { useRouter } from "next/router";
-import Head from "next/head";
-import "../styles/chat.css";
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import '../styles/chat.css'
 
 const CreateUsernamePage = () => {
-  const [username, setUsername] = useState("");
-  const [server, setServer] = useState("chat.dunamismax.com");
-  const router = useRouter();
+  const [username, setUsername] = useState('')
+  const [server, setServer] = useState('chat.dunamismax.com')
+  const router = useRouter()
 
   const handleLogin = () => {
     if (username.match(/^[a-zA-Z0-9_-]{3,16}$/)) {
-      router.push(`/chat?username=${username}&server=${server}`);
+      router.push(`/chat?username=${username}&server=${server}`)
     } else {
-      alert("Invalid username. Please use only letters, numbers, dashes, and underscores (3-16 characters).");
+      alert(
+        'Invalid username. Please use only letters, numbers, dashes, and underscores (3-16 characters).'
+      )
     }
-  };
+  }
 
   return (
     <>
@@ -40,20 +41,17 @@ const CreateUsernamePage = () => {
               placeholder="Create a new username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+              onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
               className="w-full rounded-full bg-white/10 px-4 py-2 text-white"
             />
-            <button
-              onClick={handleLogin}
-              className="glow-on-hover px-10 py-4"
-            >
+            <button onClick={handleLogin} className="glow-on-hover px-10 py-4">
               Enter
             </button>
           </div>
         </div>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default CreateUsernamePage;
+export default CreateUsernamePage

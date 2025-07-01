@@ -1,10 +1,10 @@
-import { initTRPC, TRPCError } from "@trpc/server";
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import superjson from "superjson";
-import { ZodError } from "zod";
+import { initTRPC, TRPCError } from '@trpc/server'
+import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
+import superjson from 'superjson'
+import { ZodError } from 'zod'
 
-import { getServerAuthSession } from "../auth/index";
-import { prisma } from "../db/client";
+import { getServerAuthSession } from '../auth/index'
+import { prisma } from '../db/client'
 
 /**
  * 1. CONTEXT
@@ -20,23 +20,26 @@ import { prisma } from "../db/client";
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
+  const { req, res } = opts
 
   // Get the session from the server using the getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
+  const session = await getServerAuthSession({ req, res })
 
   return {
     session,
     prisma,
-  };
-};
+  }
+}
 
 /**
  * 2. INITIALIZATION
  *
  * This is where the tRPC API is initialized, connecting the context and transformer.
  */
-const t = initTRPC.context<typeof createTRPCContext>().transformer(superjson).build();
+const t = initTRPC
+  .context<typeof createTRPCContext>()
+  .transformer(superjson)
+  .build()
 
 /**
  * 3. ROUTER & PROCEDURE (base for all other routers)
@@ -47,7 +50,7 @@ const t = initTRPC.context<typeof createTRPCContext>().transformer(superjson).bu
  * @link https://trpc.io/docs/router
  * @link https://trpc.io/docs/procedures
  */
-export const createTRPCRouter = t.router;
+export const createTRPCRouter = t.router
 
 /**
  * Public (unauthenticated) procedure
@@ -56,7 +59,7 @@ export const createTRPCRouter = t.router;
  * It does not guarantee that a user querying is authorized, but it does guarantee that
  * the user is not logged in if they are not.
  */
-export const publicProcedure = t.procedure;
+export const publicProcedure = t.procedure
 
 /**
  * Protected (authenticated) procedure
@@ -66,12 +69,12 @@ export const publicProcedure = t.procedure;
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: 'UNAUTHORIZED' })
   }
   return next({
     ctx: {
       // infers the `session` as non-nullable
       session: { ...ctx.session, user: ctx.session.user },
     },
-  });
-});
+  })
+})

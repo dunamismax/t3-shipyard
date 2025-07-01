@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const Navbar: React.FC = () => {
   return (
     <nav className="bg-blue-600 p-4 text-white shadow-md">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex items-center justify-between">
         <Link href="/" className="text-2xl font-bold">
           Web App
         </Link>
@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
         </ul>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

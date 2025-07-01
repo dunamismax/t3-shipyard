@@ -1,16 +1,19 @@
-import { type NextPage } from "next";
-import Head from "next/head";
-import { useRouter } from "next/router";
+import { type NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 const BlogPostPage: NextPage = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+  const router = useRouter()
+  const { slug } = router.query
 
   return (
     <>
       <Head>
         <title>{`Blog Post: ${slug as string} - dunamismax.com`}</title>
-        <meta name="description" content={`Blog post about ${slug as string}`} />
+        <meta
+          name="description"
+          content={`Blog post about ${slug as string}`}
+        />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
         <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-[5rem]">
@@ -22,7 +25,7 @@ const BlogPostPage: NextPage = () => {
         {/* TODO: Fetch and display individual blog post content */}
       </main>
     </>
-  );
-};
+  )
+}
 
-export default BlogPostPage;
+export default BlogPostPage

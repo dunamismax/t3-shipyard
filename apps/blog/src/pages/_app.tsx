@@ -1,9 +1,9 @@
-import { type AppType } from "next/app";
+import { type AppType } from 'next/app'
 
-import { api } from "../utils/api";
+import { api } from '../utils/api'
 
-import "../styles/globals.css";
-import Navbar from "../components/Navbar";
+import '../styles/globals.css'
+import Navbar from '../components/Navbar'
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -11,7 +11,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <Navbar />
       <Component {...pageProps} />
     </>
-  );
-};
+  )
+}
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(MyApp)

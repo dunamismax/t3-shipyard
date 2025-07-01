@@ -3,7 +3,5 @@ import sharedConfig from '@t3-shipyard/config-tailwind'
 
 export default {
   ...sharedConfig,
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
 } satisfies Config
