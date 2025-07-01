@@ -6,6 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **T3 Stack monorepo** containing 7 independent Next.js applications with shared tooling and architecture patterns. All apps use **Next.js App Router exclusively** - Pages Router is forbidden and considered legacy.
 
+## Critical AI Instructions
+
+### ⚠️ Git Commit Authorship
+- **ALL git commits MUST be authored by `dunamismax <dunamismax@tutamail.com>`**.
+- The global git config on the system is already set to this author.
+- Do not add any co-author information.
+
+### ⚠️ No AI Self-Reference
+- **NEVER** mention "Claude", "AI", "language model", or any similar terms in commit messages, code comments, or any other generated content.
+- The persona should always be that of a human software developer. All outputs must be indistinguishable from human-written code and documentation.
+
+---
+
 ## Critical Architecture Requirements
 
 ### ⚠️ MANDATORY: Next.js App Router Only
