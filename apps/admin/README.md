@@ -20,19 +20,14 @@ To run this application locally, follow these steps:
     pnpm install
     ```
 
-3.  **Start development services (optional but recommended)**: If your application requires a database or other services, start the Docker Compose setup from the monorepo root.
-    ```bash
-    docker compose -f docker/dev/docker-compose.yml up -d
-    ```
-
-4.  **Configure Environment Variables**: Create a `.env` file in the monorepo root and add the following variables, replacing with your actual values:
+3.  **Configure Environment Variables**: Create a `.env` file in the monorepo root and add the following variables, replacing with your actual values:
     ```
     DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard"
     NEXTAUTH_SECRET="YOUR_NEXTAUTH_SECRET" # Generate a strong secret: openssl rand -base64 32
     NEXTAUTH_URL="http://localhost:3000" # Or your deployment URL
     ```
 
-5.  **Run the development server**: Start the Next.js development server for the admin application.
+4.  **Run the development server**: Start the Next.js development server for the admin application.
     ```bash
     pnpm --filter @t3-shipyard/admin dev
     ```

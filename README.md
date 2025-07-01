@@ -76,13 +76,6 @@ t3-shipyard/
 │       ├── .eslintrc.cjs
 │       ├── tsconfig.json
 │       └── README.md
-├── docker/                             # Docker configurations for development and production
-│   ├── dev/                            # Development Docker Compose setup
-│   │   └── docker-compose.yml
-│   └── prod/                           # Production Docker setup
-│       ├── Caddyfile
-│       ├── Dockerfile
-│       └── docker-compose.yml
 ├── packages/                           # Shared libraries and configurations
 │   ├── config-eslint/                  # ESLint configurations
 │   │   ├── nextjs.js
@@ -120,43 +113,131 @@ t3-shipyard/
 
 ---
 
-## Tech Stack
+# The Ultimate AI-Assisted T3 Stack (Self-Hosted)
 
-This monorepo leverages the T3 Stack, optimized for performance and developer experience, with a focus on AI-assisted development and self-hosting.
+A high-performance, fully type-safe stack for modern full-stack applications, architected for AI-assisted development and pure self-hosting on your own infrastructure. This architecture is designed for running directly on an Ubuntu server, leveraging **systemd** for robust service management and **PM2** for Node.js process management in production.
 
-### I. Core Infrastructure & Backend
+---
 
--   **Full-Stack Framework**: [**Next.js**](https://nextjs.org/docs) (Latest stable release, 14+)
--   **Programming Language**: [**TypeScript**](https://www.typescriptlang.org/docs/) (Latest stable version, 5.0+)
--   **Application Server & Runtime**: [**Node.js**](https://nodejs.org/en/docs/) (Latest LTS)
--   **Containerization**: [**Docker**](https://docs.docker.com/) & [**Docker Compose**](https://docs.docker.com/compose/)
--   **Production Process Manager**: [**PM2**](https://pm2.keymetrics.io/docs/usage/quick-start/)
--   **Web Server (Reverse Proxy)**: [**Caddy**](https://caddyserver.com/docs/) or [**Nginx**](https://nginx.org/en/docs/)
--   **Database**: [**PostgreSQL**](https://www.postgresql.org/docs/) (16+)
--   **ORM & Data Access**: [**Prisma**](https://www.prisma.io/docs/)
--   **In-Memory Data Store**: [**Redis**](https://redis.io/docs/)
--   **Operating System**: [**Ubuntu Server**](https://ubuntu.com/server/docs) (Latest LTS)
+## I. Core Infrastructure & Backend
 
-### II. Frontend & User Interface
+The foundational server and data components powering the stack on a self-hosted Ubuntu server.
 
--   **Frontend Build Tool**: [**Next.js Compiler (SWC)**](https://nextjs.org/docs/architecture/compiler)
--   **Dynamic UI Framework**: [**React**](https://react.dev/learn)
--   **API Layer**: [**tRPC**](https://trpc.io/docs/)
--   **CSS Framework**: [**Tailwind CSS**](https://tailwindcss.com/docs/installation)
--   **Component Library**: [**Shadcn/ui**](https://ui.shadcn.com/docs)
+### 1. Full-Stack Framework
 
-### III. Monorepo Tools
+-   **Technology:** [**Next.js**](https://nextjs.org/docs)
+-   **Description:** The core React framework providing a robust foundation for both frontend rendering (React Server Components) and the backend (API Routes, Route Handlers), routing, and optimizations.
+-   **Version:** Latest stable release (14+).
 
--   **Package Manager**: [**pnpm**](https://pnpm.io)
--   **Task Runner**: [**Turborepo**](https://turbo.build)
+### 2. Programming Language
 
-### IV. Development Environment & Tools
+-   **Technology:** [**TypeScript**](https://www.typescriptlang.org/docs/)
+-   **Description:** The language for the entire stack. Its static type system is the cornerstone of the T3 philosophy, enabling end-to-end type safety from the database to the UI.
+-   **Version:** Latest stable version (5.0+).
 
--   **Local Environment Orchestration**: [**Docker Compose**](https://docs.docker.com/compose/gettingstarted/)
--   **Version Control**: [**Git**](https://git-scm.com/doc) & [**GitHub**](https://docs.github.com/en)
--   **Code Editor / IDE**: [**VS Code**](https://code.visualstudio.com/docs) or [**WebStorm**](https://www.jetbrains.com/webstorm/documentation/)
--   **Database GUI**: [**TablePlus**](https://tableplus.com/docs/) or [**DBeaver**](https://dbeaver.io/docs/)
--   **CLI Tools**: Package Manager Scripts ([npm](https://docs.npmjs.com/cli/v10/using-npm/scripts), [pnpm](https://pnpm.io/using-npmrc), [yarn](https://yarnpkg.com/cli/run)) & [**Prisma CLI**](https://www.prisma.io/docs/reference/cli-reference)
+### 3. Application Server & Runtime
+
+-   **Technology:** [**Node.js**](https://nodejs.org/en/docs/)
+-   **Description:** The asynchronous JavaScript runtime that executes the Next.js application directly on the server. The `next start` command runs a highly optimized, long-lived server process for instant request handling.
+-   **Version:** Latest LTS.
+
+### 4. Service Management
+
+-   **Technology:** [**systemd**](https://www.freedesktop.org/wiki/Software/systemd/)
+-   **Description:** The core service manager on modern Linux distributions like Ubuntu. It is used to manage the lifecycle of all background services, including the Next.js application (via PM2), PostgreSQL, Redis, and Caddy. Systemd services ensure that applications automatically start on boot and are restarted if they crash, providing a robust foundation for a self-hosted setup.
+
+### 5. Production Process Manager
+
+-   **Technology:** [**PM2**](https://pm2.keymetrics.io/docs/usage/quick-start/)
+-   **Description:** A production-grade process manager for Node.js. It runs the `next start` command as a durable service, providing automatic restarts on failure, log management, and a clustering mode to leverage all available CPU cores for maximum performance. PM2 is managed as a `systemd` service to ensure it starts on system boot.
+
+### 6. Web Server (Reverse Proxy)
+
+-   **Technology:** [**Caddy**](https://caddyserver.com/docs/) or [**Nginx**](https://nginx.org/en/docs/)
+-   **Description:** Acts as a reverse proxy, routing public traffic to the Next.js application running via PM2 (e.g., `127.0.0.1:3000`). Its primary roles are handling automatic HTTPS via Let's Encrypt (a core Caddy feature), SSL termination, and efficiently serving static assets directly from the `_next/static` directory.
+
+### 7. Database
+
+-   **Technology:** [**PostgreSQL**](https://www.postgresql.org/docs/)
+-   **Description:** A powerful, open-source object-relational database. Chosen for its strict data integrity, advanced features like JSONB support, and proven scalability, making it the ideal partner for Prisma. It is installed and runs as a native `systemd` service.
+-   **Version:** 16+.
+
+### 8. ORM & Data Access
+
+-   **Technology:** [**Prisma**](https://www.prisma.io/docs/)
+-   **Description:** A next-generation ORM that provides a fully type-safe client for interacting with the database. It makes database access intuitive and error-free by generating types directly from your schema.
+
+### 9. In-Memory Data Store
+
+-   **Technology:** [**Redis**](https://redis.io/docs/)
+-   **Description:** A high-performance, in-memory key-value store. Used for high-speed caching, session management, and implementing background job queues. It is installed and runs as a native `systemd` service.
+
+### 10. Operating System
+
+-   **Technology:** [**Ubuntu Server**](https://ubuntu.com/server/docs)
+-   **Description:** A stable, well-documented, and secure Linux distribution that serves as the host operating system for the entire application stack, which runs directly on the server.
+-   **Version:** Latest LTS.
+
+---
+
+## II. Frontend & User Interface
+
+This stack prioritizes a component-based, highly interactive UI workflow with end-to-end type safety.
+
+### 1. Frontend Build Tool
+
+-   **Technology:** [**Next.js Compiler (SWC)**](https://nextjs.org/docs/architecture/compiler)
+-   **Description:** An integrated, high-performance build tool written in Rust. It transparently handles compiling TypeScript/React, bundling, and minification, offering superior speed without manual configuration.
+
+### 2. Dynamic UI Framework
+
+-   **Technology:** [**React**](https://react.dev/learn)
+-   **Description:** Builds dynamic, reactive interfaces with a component-based architecture. Modern features like Server Components and Hooks are used to create complex UIs with clear state management.
+
+### 3. API Layer
+
+-   **Technology:** [**tRPC**](https://trpc.io/docs/)
+-   **Description:** The T3 Stack's signature feature. It allows you to write backend functions and call them from the frontend with full type safety and autocompletion, eliminating the need for manual API contract definition and validation.
+
+### 4. CSS Framework
+
+-   **Technology:** [**Tailwind CSS**](https://tailwindcss.com/docs/installation)
+-   **Description:** A utility-first CSS framework for rapid UI development. Its tight integration with the Next.js and React ecosystem allows for building custom, modern designs directly in your markup.
+
+### 5. Component Library
+
+-   **Technology:** [**Shadcn/ui**](https://ui.shadcn.com/docs)
+-   **Description:** A collection of beautifully designed, accessible, and unstyled components that you copy and paste into your project. This gives you full control over code and style, perfectly complementing the Tailwind CSS approach.
+
+---
+
+## III. Development Environment & Tools
+
+Tools for a streamlined, consistent, and powerful local development workflow.
+
+### 1. Local Services Setup
+
+-   **Technology:** Locally Installed Services (PostgreSQL, Redis)
+-   **Description:** For a pure, non-containerized setup, all required services are installed directly on the development machine. This involves using the system's package manager (e.g., `apt` on Ubuntu) to install and run PostgreSQL and Redis as background services, ensuring the development environment closely mirrors the production server.
+
+### 2. Version Control
+
+-   **Technology:** [**Git**](https://git-scm.com/doc) & [**GitHub**](https://docs.github.com/en)
+-   **Description:** The industry standard for version control and collaborative development, powering code reviews, issue tracking, and CI/CD pipelines.
+
+### 3. Code Editor / IDE
+
+-   **Technology:** [**VS Code**](https://code.visualstudio.com/docs) or [**WebStorm**](https://www.jetbrains.com/webstorm/documentation/)
+-   **Description:** VS Code is the de-facto standard for TypeScript development, with unparalleled extension support. WebStorm offers a more powerful, integrated experience with advanced refactoring and debugging tools.
+
+### 4. Database GUI
+
+-   **Technology:** [**TablePlus**](https://tableplus.com/docs/) or [**DBeaver**](https://dbeaver.io/docs/)
+-   **Description:** TablePlus offers a modern, native GUI for managing PostgreSQL. DBeaver is a powerful, free, and open-source universal database tool.
+
+### 5. CLI Tools
+
+-   **Technology:** Package Manager Scripts ([npm](https://docs.npmjs.com/cli/v10/using-npm/scripts), [pnpm](https://pnpm.io/using-npmrc), [yarn](https://yarnpkg.com/cli/run)) & [**Prisma CLI**](https://www.prisma.io/docs/reference/cli-reference)
 
 ---
 
@@ -220,13 +301,49 @@ To get started with this monorepo, follow the steps below.
     ```bash
     pnpm install
     ```
-3.  **Start development services**:
+3.  **Build applications for production**:
     ```bash
-    docker compose -f docker/dev/docker-compose.yml up -d
+    pnpm build
     ```
-4.  **Run all apps in dev mode**:
+4.  **Start applications using PM2 (on your Ubuntu server)**:
+    After building, you can start each application using PM2. First, install PM2 globally:
     ```bash
-    pnpm dev
+    npm install -g pm2
+    ```
+    Then, navigate to each application's directory and start it with PM2. For example, for the `admin` app:
+    ```bash
+    cd apps/admin
+    pm2 start npm --name "admin-app" -- start
+    ```
+    Repeat for `blog`, `dashboard`, `dunamismax.com`, and `web` apps, adjusting the `--name` and `cd` path accordingly.
+
+5.  **Configure systemd services (on your Ubuntu server)**:
+    Copy the provided systemd service files from the `systemd/` directory in this repository to `/etc/systemd/system/` on your server. Remember to replace `your_username` in each service file with your actual username.
+    ```bash
+    sudo cp /path/to/your/t3-shipyard/systemd/*.service /etc/systemd/system/
+    sudo systemctl daemon-reload
+    sudo systemctl enable admin.service # Repeat for other services
+    sudo systemctl start admin.service  # Repeat for other services
+    ```
+
+6.  **Set up a Reverse Proxy (e.g., Nginx or Caddy)**:
+    Configure your chosen reverse proxy (Nginx or Caddy) to route traffic to your applications. Each application will be running on a different port (e.g., 3000, 3001, etc.). Refer to the Nginx or Caddy documentation for detailed setup instructions. An example Caddyfile is provided in the `docker/prod/Caddyfile` (though Docker is removed, this file can serve as a reference for port mapping).
+
+    Example Nginx configuration snippet for `dunamismax.com`:
+    ```nginx
+    server {
+        listen 80;
+        server_name dunamismax.com;
+
+        location / {
+            proxy_pass http://localhost:3000; # Adjust port for each app
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+    }
     ```
 
 ---

@@ -2,21 +2,24 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+To run this application locally, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  **Navigate to the monorepo root**: If you are not already there, change your directory to the `t3-shipyard` root.
+    ```bash
+    cd /path/to/t3-shipyard
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2.  **Install dependencies**: Ensure all monorepo dependencies are installed.
+    ```bash
+    pnpm install
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3.  **Run the development server**: Start the Next.js development server for the dunamismax.com application.
+    ```bash
+    pnpm --filter @t3-shipyard/dunamismax.com dev
+    ```
+
+    The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 

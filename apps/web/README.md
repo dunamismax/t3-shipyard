@@ -20,12 +20,7 @@ To run this application locally, follow these steps:
     pnpm install
     ```
 
-3.  **Start development services (optional but recommended)**: If your application requires a database or other services, start the Docker Compose setup from the monorepo root.
-    ```bash
-    docker compose -f docker/dev/docker-compose.yml up -d
-    ```
-
-4.  **Run the development server**: Start the Next.js development server for the web application.
+3.  **Run the development server**: Start the Next.js development server for the web application.
     ```bash
     pnpm --filter @t3-shipyard/web dev
     ```

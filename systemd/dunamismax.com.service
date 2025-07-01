@@ -1,0 +1,12 @@
+[Unit]
+Description=Next.js Dunamismax.com Application
+After=network.target
+
+[Service]
+User=your_username
+WorkingDirectory=/Users/sawyer/Library/CloudStorage/GoogleDrive-stephenvsawyer@gmail.com/My Drive/github/t3-shipyard/apps/dunamismax.com
+ExecStart=/usr/bin/npm start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
