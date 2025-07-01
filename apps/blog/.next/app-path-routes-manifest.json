@@ -1,6 +1,0 @@
-{
-  "/api/trpc/[trpc]/route": "/api/trpc/[trpc]",
-  "/_not-found/page": "/_not-found",
-  "/posts/[postId]/page": "/posts/[postId]",
-  "/page": "/"
-}
