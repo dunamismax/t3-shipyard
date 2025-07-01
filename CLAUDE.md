@@ -11,19 +11,31 @@ This document provides strict guidelines for any AI assistant working on this re
 
 ### 1.2. Git and Version Control
 - **Author all commits as `dunamismax <dunamismax@tutamail.com>`.** The system's global git config is already set to this. Do not override it.
-- **NEVER add `Co-Authored-By` trailers.** All contributions must be attributed solely to the primary author.
+- **NEVER add `Co-Authored-By` trailers.** All contributions must be attributed solely to the primary author. This is enforced by the project's `settings.json`.
 - **Write Conventional Commits.** Use prefixes like `feat:`, `fix:`, `docs:`, `refactor:`, etc.
 - **Push directly to `main`** after every successful task unless otherwise instructed.
 
-## 2. Project Architecture: T3 Stack (Self-Hosted)
+## 2. Project-Specific Configuration (`.claude/settings.local.json`)
+
+This project uses a local settings file to enforce specific behaviors.
+
+```json
+{
+  "includeCoAuthoredBy": false
+}
+```
+
+- **`"includeCoAuthoredBy": false`**: This is a critical setting that **prevents the AI from adding the `Co-Authored-By` trailer** to any git commits. This setting is mandatory and must not be changed.
+
+## 3. Project Architecture: T3 Stack (Self-Hosted)
 
 This is a **T3 Stack monorepo** containing 7 independent Next.js applications. The architecture is designed for high performance and type safety on a self-hosted Ubuntu server.
 
-### 2.1. ⚠️ Critical Requirement: App Router ONLY
+### 3.1. ⚠️ Critical Requirement: App Router ONLY
 - **All applications MUST use the Next.js App Router (`src/app/`).**
 - **The Pages Router (`src/pages/`) is FORBIDDEN** and considered legacy. Any existing Pages Router code must be migrated.
 
-### 2.2. Standard Application Structure
+### 3.2. Standard Application Structure
 Each application follows this mandatory structure:
 ```
 apps/[app-name]/
@@ -48,9 +60,9 @@ apps/[app-name]/
 └── tsconfig.json
 ```
 
-## 3. Technology Stack & Configuration
+## 4. Technology Stack & Configuration
 
-### 3.1. Core Technologies
+### 4.1. Core Technologies
 - **Next.js 14+** (App Router)
 - **TypeScript 5.0+**
 - **tRPC 11+**
@@ -60,7 +72,7 @@ apps/[app-name]/
 - **ESLint 9** (Flat Config)
 - **pnpm** (Workspace)
 
-### 3.2. ⚠️ Required Configurations
+### 4.2. ⚠️ Required Configurations
 
 #### PostCSS (`postcss.config.cjs`)
 ```javascript
@@ -88,18 +100,18 @@ module.exports = {
 - Must use flat config format (`eslint.config.js`).
 - Must import rules from `@eslint/js`.
 
-## 4. Development Workflow
+## 5. Development Workflow
 
-### 4.1. Common Commands
+### 5.1. Common Commands
 
 - **Root:** `pnpm dev`, `pnpm build`, `pnpm lint`, `pnpm db:push`
 - **App-specific:** `cd apps/[app-name]` then `pnpm dev`, `pnpm build`, etc.
 
-### 4.2. Database
+### 5.2. Database
 - **Use `pnpm db:push` for schema changes.** This project does not use migrations.
 - Each app has its own independent database.
 
-### 4.3. Troubleshooting
+### 5.3. Troubleshooting
 If a build fails, check in this order:
 1.  `postcss.config.cjs` format.
 2.  Missing devDependencies (e.g., `@tailwindcss/postcss`).
@@ -107,7 +119,7 @@ If a build fails, check in this order:
 4.  tRPC context and provider setup for App Router.
 5.  Missing `"use client"` directives.
 
-## 5. Application Overview
+## 6. Application Overview
 
 - **admin (3001):** User management panel.
 - **blog (3002):** Content and post management.
