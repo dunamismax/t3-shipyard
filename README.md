@@ -91,6 +91,16 @@ t3-shipyard/
 │   │       ├── next.svg
 │   │       ├── vercel.svg
 │   │       └── window.svg
+│   ├── trpchat/                        # Real-time chat application
+│   │   ├── .eslintrc.cjs
+│   │   ├── next.config.mjs
+│   │   ├── package.json
+│   │   ├── postcss.config.cjs
+│   │   ├── README.md
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   └── prisma/
+│   │       └── schema.prisma
 │   └── web/                            # Marketing website application
 │       ├── .eslintrc.cjs
 │       ├── next.config.mjs
@@ -253,6 +263,10 @@ My personal blog and developer portfolio website. This application showcases my 
 ### [Web Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/web)
 
 The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application.
+
+### [trpchat Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/trpchat)
+
+A real-time chat application similar to Slack or Discord, built to explore WebSockets with tRPC for real-time communication.
 
 ---
 

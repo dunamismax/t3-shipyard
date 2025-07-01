@@ -1,8 +1,8 @@
-# Web Application
+# trpchat Application
 
 ## Overview
 
-This application showcases public-facing content and features, built with Next.js, tRPC, Prisma, and Tailwind CSS. It serves as a primary example of a client-facing application.
+This application is a real-time chat application similar to Slack or Discord. It demonstrates real-time communication using WebSockets with tRPC, built with Next.js, tRPC, and Tailwind CSS.
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ To run this application locally, follow these steps:
 2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
 
     ```
-    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_web"
+    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_trpchat"
     ```
 
 3. **Run database migrations and generate Prisma client**:
@@ -27,7 +27,13 @@ To run this application locally, follow these steps:
     pnpm db:generate
     ```
 
-4. **Run the development server**:
+4. **Start the WebSocket server**:
+
+    ```bash
+    pnpm ws-dev
+    ```
+
+5. **Run the development server**:
 
     ```bash
     pnpm dev
@@ -38,30 +44,37 @@ To run this application locally, follow these steps:
 ## Project Structure
 
 ```
-apps/web/
+apps/trpchat/
 ├── src/
 │   ├── pages/                  # Next.js pages (routes)
 │   │   ├── api/                # API routes (tRPC endpoint)
 │   │   │   └── trpc/
 │   │   │       └── [trpc].ts
+│   │   ├── chat/               # Dynamic chatroom pages
+│   │   │   └── [chatroom].tsx
 │   │   ├── _app.tsx            # Custom App component
-│   │   └── index.tsx           # Home page
+│   │   └── index.tsx           # Home page (username and server input)
 │   ├── components/             # Reusable React components
-│   │   └── Navbar.tsx
+│   │   └── ui/                 # UI components (e.g., Button)
+│   │       └── button.tsx
 │   ├── server/                 # Backend-related code
 │   │   ├── api/                # tRPC API definitions
 │   │   │   ├── routers/        # Individual tRPC routers
+│   │   │   │   ├── chat.ts
 │   │   │   │   └── example.ts
 │   │   │   ├── root.ts         # Root tRPC router
 │   │   │   └── trpc.ts         # tRPC context and procedures
 │   │   ├── auth/               # Authentication setup (NextAuth.js)
 │   │   │   └── index.ts
-│   │   └── db/                 # Database client setup
-│   │       └── client.ts
+│   │   ├── db/                 # Database client setup
+│   │   │   └── client.ts
+│   │   └── wsServer.ts         # WebSocket server for real-time communication
 │   ├── styles/                 # Global styles
+│   │   ├── chat.css
 │   │   └── globals.css
 │   └── utils/                  # Utility functions (e.g., tRPC client setup)
 │       └── api.ts
+├── ecosystem.config.js         # PM2 ecosystem configuration
 ├── next.config.mjs             # Next.js configuration
 ├── package.json                # Package dependencies and scripts
 ├── postcss.config.cjs          # PostCSS configuration
@@ -90,5 +103,5 @@ This application is built using the following core technologies:
 - **Next.js**
 - **TypeScript**
 - **tRPC**
-- **Prisma**
 - **Tailwind CSS**
+- **WebSockets**
