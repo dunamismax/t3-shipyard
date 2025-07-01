@@ -29,19 +29,85 @@ To run this application locally, follow these steps:
 
     The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
+
+```
+apps/dunamismax.com/
+├── src/
+│   ├── app/                    # Next.js App Router (pages, layout, etc.)
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── components/             # Reusable React components
+│   │   └── Navbar.tsx
+│   ├── pages/                  # Next.js Pages Router (for API routes or specific pages)
+│   │   ├── api/                # API routes (tRPC endpoint)
+│   │   ├── blog/               # Blog pages
+│   │   ├── portfolio/          # Portfolio pages
+│   │   ├── _app.tsx            # Custom App component
+│   │   └── index.tsx           # Home page
+│   ├── server/                 # Backend-related code
+│   │   ├── api/                # tRPC API definitions
+│   │   ├── auth/               # Authentication setup (NextAuth.js)
+│   │   └── db/                 # Database client setup
+│   ├── styles/                 # Global styles
+│   │   └── globals.css
+│   └── utils/                  # Utility functions (e.g., tRPC client setup)
+│       └── api.ts
+├── next.config.ts              # Next.js configuration
+├── package.json                # Package dependencies and scripts
+├── postcss.config.mjs          # PostCSS configuration
+├── tailwind.config.ts          # Tailwind CSS configuration
+├── .eslintrc.cjs               # ESLint configuration
+├── tsconfig.json               # TypeScript configuration
+└── README.md                   # This README file
+```
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+-   [T3 Stack Documentation](https://create.t3.gg/)
+-   [Next.js Documentation](https://nextjs.org/docs)
+-   [tRPC Documentation](https://trpc.io/docs)
+-   [Prisma Documentation](https://www.prisma.io/docs)
+-   [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+-   [NextAuth.js Documentation](https://next-auth.js.org/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**[&#8593; Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard)**
 
-## Deploy on Vercel
+## Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This application is built using the following technologies:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Core Infrastructure & Backend
+
+-   **Next.js**: Full-stack React framework (v14+)
+-   **TypeScript**: Type-safe language (v5.0+)
+-   **Node.js**: JavaScript runtime (LTS)
+-   **PostgreSQL**: Relational database (v16+)
+-   **Prisma**: ORM for type-safe data access
+-   **Redis**: In-memory data store
+
+### Frontend & User Interface
+
+-   **React**: UI framework
+-   **tRPC**: Type-safe API layer
+-   **Tailwind CSS**: Utility-first CSS framework
+-   **Shadcn/ui**: Reusable UI components
+-   **Next.js Compiler (SWC)**: Fast build tool
+
+### Development Environment & Tools
+
+-   **Git & GitHub**: Version control
+-   **VS Code/WebStorm**: Code editors
+-   **TablePlus/DBeaver**: Database GUIs
+-   **Prisma CLI**: Database management
+
+### Quality Assurance & Code Standards
+
+-   **Jest & Playwright**: Testing frameworks
+-   **TypeScript Compiler (tsc)**: Static analysis
+-   **ESLint & Prettier**: Linters and formatters
+-   **VS Code Debugger & React Developer Tools**: Debugging tools
