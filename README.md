@@ -186,22 +186,22 @@ To get started with this monorepo, follow the steps below.
     pnpm build
     ```
 
-4. **Start Applications using PM2 (on your Ubuntu server)**
+4. **Start Individual Applications using PM2 (on your Ubuntu server)**
 
-    After building, you can start each application using PM2. First, install PM2 globally:
+    After building, you can start each application independently using PM2. First, install PM2 globally:
 
     ```bash
     npm install -g pm2
     ```
 
-    Then, navigate to each application's directory and start it with PM2. For example, for the `admin` app:
+    Then, for each application, navigate to its directory and start it with PM2. For example, for the `admin` app:
 
     ```bash
     cd apps/admin
     pm2 start npm --name "admin-app" -- start
     ```
 
-    Repeat for `blog`, `dashboard`, `dunamismax.com`, and `web` apps, adjusting the `--name` and `cd` path accordingly.
+    Repeat this process for `blog`, `dashboard`, `dunamismax.com`, and `web` apps, adjusting the `--name` and `cd` path accordingly.
 
 5. **Configure systemd services (on your Ubuntu server)**
 
