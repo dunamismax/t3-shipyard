@@ -1,5 +1,9 @@
 # Dashboard Application
 
+<p align="center">
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+</p>
+
 ## Overview
 
 This application provides an administrative interface for managing data and performing internal tasks. It demonstrates authenticated routes and complex data interactions, built with Next.js, tRPC, Prisma, and Tailwind CSS.

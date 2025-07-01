@@ -1,5 +1,9 @@
 # CodeCaddy Application
 
+<p align="center">
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+</p>
+
 ## Overview
 
 CodeCaddy is a minimalist and fast platform for developers to publicly save, tag, and discover code snippets. It's designed as a community-driven, open clipboard for useful code, with all snippets being public and no login required.

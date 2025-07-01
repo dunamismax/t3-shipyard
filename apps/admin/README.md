@@ -1,5 +1,9 @@
 # Admin Application
 
+<p align="center">
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+</p>
+
 ## Overview
 
 This application provides a dedicated interface for managing users, content, and system settings. It demonstrates robust authentication with NextAuth.js, protected tRPC routes, and user management features, built with Next.js, tRPC, Prisma, and Tailwind CSS.

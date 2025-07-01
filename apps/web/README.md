@@ -1,5 +1,9 @@
 # Web Application
 
+<p align="center">
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+</p>
+
 ## Overview
 
 This application showcases public-facing content and features, built with Next.js, tRPC, Prisma, and Tailwind CSS. It serves as a primary example of a client-facing application.

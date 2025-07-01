@@ -1,5 +1,9 @@
 # Blog Application
 
+<p align="center">
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+</p>
+
 ## Overview
 
 This application is a content-focused platform for publishing articles and updates. It demonstrates dynamic content rendering, tRPC queries and mutations for post management, and basic SEO considerations, built with Next.js, tRPC, Prisma, and Tailwind CSS.

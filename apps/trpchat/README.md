@@ -1,5 +1,9 @@
 # trpchat Application
 
+<p align="center">
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+</p>
+
 ## Overview
 
 This application is a real-time chat application similar to Slack or Discord. It demonstrates real-time communication using WebSockets with tRPC, built with Next.js, tRPC, and Tailwind CSS.
