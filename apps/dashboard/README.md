@@ -51,7 +51,8 @@ apps/dashboard/
 │   │   │   │   └── example.ts
 │   │   │   ├── root.ts         # Root tRPC router
 │   │   │   └── trpc.ts         # tRPC context and procedures
-│   │   ├── auth.ts             # Authentication setup (NextAuth.js)
+│   │   ├── auth/               # Authentication setup (NextAuth.js)
+│   │   │   └── index.ts
 │   │   └── db/                 # Database client setup
 │   │       └── client.ts
 │   ├── styles/                 # Global styles
