@@ -33,7 +33,7 @@ Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js ap
 
 ## Developer Resources
 
-For comprehensive documentation, guides, and resources related to this monorepo, please visit the [docs folder](https://github.com/dunamismax/t3-shipyard/tree/main/docs).
+For comprehensive documentation, guides, and resources related to this monorepo, please visit the [docs folder](https://github.com/dunamismax/t3-shipyard/blob/main/docs/README.md).
 
 ---
 

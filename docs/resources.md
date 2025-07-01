@@ -20,9 +20,9 @@ These are the official "sources of truth" for the primary technologies used in t
 | **Prisma**       | [prisma.io/docs](https://prisma.io/docs)                                    | Your go-to guide for schema definitions, generating the Prisma Client, and writing type-safe database queries.          |
 | **Tailwind CSS** | [tailwindcss.com/docs](https://tailwindcss.com/docs)                        | The ultimate reference for every utility class. The live search is excellent for finding the exact class you need.      |
 | **Shadcn/ui**    | [ui.shadcn.com/docs](https://ui.shadcn.com/docs)                            | Essential for browsing available components, copying installation commands, and learning how to use and customize them. |
-| **NextAuth.js**  | [next-auth.js.org](https://next-auth.js.org)                                | The definitive guide for setting up authentication, configuring OAuth providers, and managing user sessions.            |
 | **Playwright**   | [playwright.dev/docs](https://playwright.dev/docs/intro)                    | Comprehensive guides for writing end-to-end tests, using locators effectively, and running tests across browsers.       |
 | **PM2**          | [pm2.keymetrics.io/docs](https://pm2.keymetrics.io/docs/usage/quick-start/) | All commands and configuration options for managing your production Node.js processes.                                  |
+| **Caddy**        | [caddyserver.com/docs/](https://caddyserver.com/docs/)                      | Official documentation for the Caddy web server.                                                                        |
 
 ---
 
@@ -44,4 +44,4 @@ A collection of websites, libraries, and guides that complement the core stack a
 
 ---
 
-**[Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file)**
+**[⬆️ Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file)**

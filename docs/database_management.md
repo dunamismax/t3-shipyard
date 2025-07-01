@@ -1,4 +1,4 @@
-# database management
+# Database Management
 
 <p align="center">
   <img src="../t3-shipyard-image.png" alt="t3-shipyard logo" width="250"/>
@@ -8,71 +8,50 @@ This document provides guidelines and best practices for managing databases with
 
 ---
 
-## overview
+## Overview
 
-Each application in this monorepo typically has its own Prisma schema and database. This ensures isolation and flexibility. This guide covers common database management tasks.
+Each application in this monorepo has its own independent Prisma schema and database. This ensures isolation and flexibility. This guide covers common database management tasks. The established workflow in this repository uses `pnpm db:push` for schema management, which is suitable for rapid prototyping and development. **We do not use migrations.**
 
 ---
 
-## prisma migrations
+## Development Workflow with `db:push`
 
-Prisma Migrate is used to evolve your database schema. Each application manages its own migrations.
+The `db:push` command synchronizes your Prisma schema with your database schema. It's a fast way to apply schema changes during development.
 
-### development workflow
+1.  **Make Schema Changes**: Modify the `schema.prisma` file within the desired application directory (`apps/<app-name>/prisma/schema.prisma`).
 
-1.  **make schema changes**: Modify `prisma/schema.prisma` within your application directory (`apps/<app-name>/prisma/schema.prisma`).
-
-2.  **create a new migration**: Generate a new migration file based on your schema changes.
-
+2.  **Push Schema Changes**: From the application's directory, run `db:push`:
     ```bash
     cd apps/<app-name>
-    pnpm prisma migrate dev --name <migration-name>
+    pnpm db:push
     ```
-
-    Replace `<migration-name>` with a descriptive name (e.g., `add-users-table`). This command will:
-    -   Create a new migration file in `prisma/migrations/`.
-    -   Apply the migration to your development database.
+    This command will:
+    -   Introspect the database.
+    -   Compare it to the target `schema.prisma`.
+    -   Apply the necessary changes to the database to match the schema.
     -   Generate a new Prisma Client.
 
-3.  **resetting the database**: If you need to reset your development database (e.g., to clear all data and apply migrations from scratch):
+    You can also run this command for all apps from the monorepo root:
+    ```bash
+    pnpm db:push
+    ```
 
+3.  **Resetting the Database**: If you need to reset your development database (e.g., to clear all data and re-apply the schema from scratch):
     ```bash
     cd apps/<app-name>
     pnpm prisma migrate reset
     ```
-
-    **caution**: This will delete all data in your database.
-
-### production workflow
-
-For production environments, migrations are typically applied in a non-interactive way.
-
-1.  **generate migration**: On your development machine, after making schema changes, generate the migration without applying it:
-
-    ```bash
-    cd apps/<app-name>
-    pnpm prisma migrate dev --create-only --name <migration-name>
-    ```
-
-2.  **apply migration in production**: On your production server, after pulling the latest code, apply pending migrations:
-
-    ```bash
-    cd apps/<app-name>
-    pnpm prisma migrate deploy
-    ```
-
-    This command will apply all pending migrations found in `prisma/migrations/`.
+    **Caution**: This will delete all data in your database.
 
 ---
 
-## database seeding
+## Database Seeding
 
 Seeding your database with initial data is useful for development and testing.
 
-1.  **create a seed script**: Create a `seed.ts` (or `seed.js`) file in your `prisma` directory (e.g., `apps/<app-name>/prisma/seed.ts`).
+1.  **Create a Seed Script**: Create a `seed.ts` (or `seed.js`) file in your `prisma` directory (e.g., `apps/<app-name>/prisma/seed.ts`).
 
     Example `seed.ts`:
-
     ```typescript
     import { PrismaClient } from '@prisma/client';
 
@@ -99,26 +78,29 @@ Seeding your database with initial data is useful for development and testing.
       });
     ```
 
-2.  **configure package.json**: Add a `postinstall` script to your application's `package.json` to run the seed script after `prisma generate`.
-
+2.  **Configure `package.json`**: Add a `seed` script to your application's `package.json`.
     ```json
     {
       "scripts": {
-        "postinstall": "prisma generate && ts-node prisma/seed.ts"
+        "seed": "ts-node prisma/seed.ts"
       }
     }
     ```
 
-3.  **run seeding**: After `pnpm install` and `pnpm db:push`, the `postinstall` script will run the seed.
+3.  **Run Seeding**:
+    ```bash
+    cd apps/<app-name>
+    pnpm seed
+    ```
 
 ---
 
-## troubleshooting common issues
+## Troubleshooting Common Issues
 
--   **database connection refused**: Ensure your PostgreSQL server is running and accessible from your application. Check `DATABASE_URL` in your `.env` file.
--   **migration conflicts**: If you encounter conflicts when pulling changes, you might need to resolve them manually or reset your local database (`pnpm prisma migrate reset`).
--   **prisma client not found**: After making schema changes or running migrations, ensure you run `pnpm prisma generate` (or `pnpm db:generate` from the monorepo root) to regenerate the Prisma Client.
+-   **Database Connection Refused**: Ensure your PostgreSQL server is running and accessible from your application. Check the `DATABASE_URL` in your `.env` file.
+-   **Schema Drift**: If the database schema has drifted from the `schema.prisma` file, `pnpm db:push` might fail. In development, it's often easiest to reset the database with `pnpm prisma migrate reset`.
+-   **Prisma Client Not Found**: After making schema changes, ensure you run `pnpm db:generate` (or `pnpm db:push`, which runs generate automatically) to regenerate the Prisma Client.
 
 ---
 
-**[back to monorepo root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file)**
+**[⬆️ Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard?tab=readme-ov-file)**
