@@ -6,38 +6,38 @@
 
 ## Overview
 
-This application showcases public-facing content and features, built with Next.js, tRPC, Prisma, and Tailwind CSS. It serves as a primary example of a client-facing application.
+This application showcases public-facing content and features.
 
 ## Getting Started
 
 To run this application locally, follow these steps:
 
-1. **Install dependencies**:
+1.  **Install dependencies**:
 
-   ```bash
-   pnpm install
-   ```
+    ```bash
+    pnpm install
+    ```
 
-2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
+2.  **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
 
-   ```
-   DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_web"
-   ```
+    ```
+    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_web"
+    ```
 
-3. **Run database migrations and generate Prisma client**:
+3.  **Run database migrations and generate Prisma client**:
 
-   ```bash
-   pnpm db:push
-   pnpm db:generate
-   ```
+    ```bash
+    pnpm db:push
+    pnpm db:generate
+    ```
 
-4. **Run the development server**:
+4.  **Run the development server**:
 
-   ```bash
-   pnpm dev
-   ```
+    ```bash
+    pnpm dev
+    ```
 
-   The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
+    The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
 
 ## Project Structure
 
@@ -91,8 +91,8 @@ apps/web/
 
 This application is built using the following core technologies:
 
-- **Next.js**
-- **TypeScript**
-- **tRPC**
-- **Prisma**
-- **Tailwind CSS**
+-   **Next.js**
+-   **TypeScript**
+-   **tRPC**
+-   **Prisma**
+-   **Tailwind CSS**

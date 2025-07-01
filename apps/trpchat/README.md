@@ -6,7 +6,7 @@
 
 ## Overview
 
-This application is a real-time chat application similar to Slack or Discord. It demonstrates real-time communication using WebSockets with tRPC, built with Next.js, tRPC, and Tailwind CSS.
+This application is a real-time chat application similar to Slack or Discord. It demonstrates real-time communication using WebSockets with tRPC.
 
 ## Getting Started
 
