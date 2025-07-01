@@ -20,7 +20,6 @@ Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js ap
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Documentation](#documentation)
 - [Repository Structure](#repository-structure)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
