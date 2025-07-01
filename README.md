@@ -123,7 +123,7 @@ This monorepo leverages the T3 Stack, optimized for performance and developer ex
 - **Node.js**: JavaScript runtime (LTS)
 - **systemd**: Service manager for Ubuntu Server
 - **PM2**: Node.js process manager
-- **Caddy/Nginx**: Reverse proxy with HTTPS
+- **Caddy**: Reverse proxy with automatic HTTPS ([Installation Guide](https://caddyserver.com/docs/install))
 - **PostgreSQL**: Relational database (v16+)
 - **Prisma**: ORM for type-safe data access
 - **Redis**: In-memory data store
@@ -200,26 +200,17 @@ To get started with this monorepo, follow the steps below.
     sudo systemctl start admin.service  # Repeat for other services
     ```
 
-6. **Set up a Reverse Proxy (e.g., Nginx or Caddy)**:
-    Configure your chosen reverse proxy (Nginx or Caddy) to route traffic to your applications. Each application will be running on a different port (e.g., 3000, 3001, etc.). Refer to the Nginx or Caddy documentation for detailed setup instructions. An example Caddyfile is provided in the `docker/prod/Caddyfile` (though Docker is removed, this file can serve as a reference for port mapping).
+6. **Set up a Reverse Proxy (e.g., Caddy)**:
+    Configure Caddy to route traffic to your applications. Each application will be running on a different port (e.g., 3000, 3001, etc.). For Caddy installation instructions, refer to the [official documentation](https://caddyserver.com/docs/install).
 
-    Example Nginx configuration snippet for `dunamismax.com`:
+    Example Caddyfile configuration for `dunamismax.com`:
 
-    ```nginx
-    server {
-        listen 80;
-        server_name dunamismax.com;
-
-        location / {
-            proxy_pass http://localhost:3000; # Adjust port for each app
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
+    ```caddy
+    dunamismax.com {
+        reverse_proxy localhost:3000 # Adjust port for each app
     }
     ```
+    You will need to add similar blocks for `blog.dunamismax.com`, `admin.dunamismax.com`, `dashboard.dunamismax.com`, and `web.dunamismax.com`, adjusting the port for each application.
 
 ---
 
