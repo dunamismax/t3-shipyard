@@ -1,7 +1,7 @@
 # Dashboard Application
 
 <p align="center">
-  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="250"/>
 </p>
 
 ## Overview
@@ -14,30 +14,30 @@ To run this application locally, follow these steps:
 
 1. **Install dependencies**:
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   pnpm install
+   ```
 
 2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
 
-    ```
-    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_dashboard"
-    ```
+   ```
+   DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_dashboard"
+   ```
 
 3. **Run database migrations and generate Prisma client**:
 
-    ```bash
-    pnpm db:push
-    pnpm db:generate
-    ```
+   ```bash
+   pnpm db:push
+   pnpm db:generate
+   ```
 
 4. **Run the development server**:
 
-    ```bash
-    pnpm dev
-    ```
+   ```bash
+   pnpm dev
+   ```
 
-    The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
+   The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
 
 ## Project Structure
 

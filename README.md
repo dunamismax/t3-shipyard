@@ -1,7 +1,7 @@
 # t3-shipyard
 
 <p align="center">
-  <img src="./t3-shipyard-image.png" alt="t3-shipyard logo" width="200"/>
+  <img src="./t3-shipyard-image.png" alt="t3-shipyard logo" width="250"/>
 </p>
 
 Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js applications, each designed to be independent and self-contained for efficient, scalable, and maintainable project management.

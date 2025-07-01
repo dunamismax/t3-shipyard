@@ -1,7 +1,7 @@
 # CodeCaddy Application
 
 <p align="center">
-  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="100"/>
+  <img src="../../t3-shipyard-image.png" alt="t3-shipyard logo" width="250"/>
 </p>
 
 ## Overview
