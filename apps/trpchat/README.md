@@ -10,36 +10,36 @@ To run this application locally, follow these steps:
 
 1. **Install dependencies**:
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   pnpm install
+   ```
 
 2. **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
 
-    ```
-    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_trpchat"
-    ```
+   ```
+   DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_trpchat"
+   ```
 
 3. **Run database migrations and generate Prisma client**:
 
-    ```bash
-    pnpm db:push
-    pnpm db:generate
-    ```
+   ```bash
+   pnpm db:push
+   pnpm db:generate
+   ```
 
 4. **Start the WebSocket server**:
 
-    ```bash
-    pnpm ws-dev
-    ```
+   ```bash
+   pnpm ws-dev
+   ```
 
 5. **Run the development server**:
 
-    ```bash
-    pnpm dev
-    ```
+   ```bash
+   pnpm dev
+   ```
 
-    The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
+   The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
 
 ## Project Structure
 

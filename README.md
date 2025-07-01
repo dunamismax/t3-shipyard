@@ -175,68 +175,68 @@ To get started with this monorepo, follow the steps below.
 
 1. **Clone the Repository**
 
-    ```bash
-    git clone https://github.com/dunamismax/t3-shipyard.git
-    cd t3-shipyard
-    ```
+   ```bash
+   git clone https://github.com/dunamismax/t3-shipyard.git
+   cd t3-shipyard
+   ```
 
 2. **Install Dependencies**:
 
-    From the root of the monorepo, install all dependencies for all applications:
+   From the root of the monorepo, install all dependencies for all applications:
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   pnpm install
+   ```
 
 3. **Build Applications**:
 
-    From the root of the monorepo, build all applications for production:
+   From the root of the monorepo, build all applications for production:
 
-    ```bash
-    pnpm build
-    ```
+   ```bash
+   pnpm build
+   ```
 
 4. **Start Individual Applications using PM2 (on your Ubuntu server)**
 
-    After building, you can start each application independently using PM2. First, install PM2 globally:
+   After building, you can start each application independently using PM2. First, install PM2 globally:
 
-    ```bash
-    npm install -g pm2
-    ```
+   ```bash
+   npm install -g pm2
+   ```
 
-    Then, for each application, navigate to its directory and start it with PM2. For example, for the `admin` app:
+   Then, for each application, navigate to its directory and start it with PM2. For example, for the `admin` app:
 
-    ```bash
-    cd apps/admin
-    pm2 start npm --name "admin-app" -- start
-    ```
+   ```bash
+   cd apps/admin
+   pm2 start npm --name "admin-app" -- start
+   ```
 
-    Repeat this process for `blog`, `dashboard`, `dunamismax.com`, and `web` apps, adjusting the `--name` and `cd` path accordingly.
+   Repeat this process for `blog`, `dashboard`, `dunamismax.com`, and `web` apps, adjusting the `--name` and `cd` path accordingly.
 
 5. **Configure systemd services (on your Ubuntu server)**
 
-    Copy the provided systemd service files from the `systemd/` directory in this repository to `/etc/systemd/system/` on your server. Remember to replace `your_username` in each service file with your actual username.
+   Copy the provided systemd service files from the `systemd/` directory in this repository to `/etc/systemd/system/` on your server. Remember to replace `your_username` in each service file with your actual username.
 
-    ```bash
-    sudo cp /path/to/your/t3-shipyard/systemd/*.service /etc/systemd/system/
-    sudo systemctl daemon-reload
-    sudo systemctl enable admin.service # Repeat for other services
-    sudo systemctl start admin.service  # Repeat for other services
-    ```
+   ```bash
+   sudo cp /path/to/your/t3-shipyard/systemd/*.service /etc/systemd/system/
+   sudo systemctl daemon-reload
+   sudo systemctl enable admin.service # Repeat for other services
+   sudo systemctl start admin.service  # Repeat for other services
+   ```
 
 6. **Set up a Reverse Proxy (e.g., Caddy)**
 
-    Configure Caddy to route traffic to your applications. Each application will be running on a different port (e.g., 3000, 3001, etc.). For Caddy installation instructions, refer to the [official documentation](https://caddyserver.com/docs/install).
+   Configure Caddy to route traffic to your applications. Each application will be running on a different port (e.g., 3000, 3001, etc.). For Caddy installation instructions, refer to the [official documentation](https://caddyserver.com/docs/install).
 
-    Example Caddyfile configuration for `dunamismax.com`:
+   Example Caddyfile configuration for `dunamismax.com`:
 
-    ```caddy
-    dunamismax.com {
-        reverse_proxy localhost:3000 # Adjust port for each app
-    }
-    ```
+   ```caddy
+   dunamismax.com {
+       reverse_proxy localhost:3000 # Adjust port for each app
+   }
+   ```
 
-    You will need to add similar blocks for `blog.dunamismax.com`, `admin.dunamismax.com`, `dashboard.dunamismax.com`, and `web.dunamismax.com`, adjusting the port for each application.
+   You will need to add similar blocks for `blog.dunamismax.com`, `admin.dunamismax.com`, `dashboard.dunamismax.com`, and `web.dunamismax.com`, adjusting the port for each application.
 
 ---
 
