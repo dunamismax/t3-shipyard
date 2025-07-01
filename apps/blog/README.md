@@ -80,3 +80,38 @@ apps/blog/
 ---
 
 **[&#8593; Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard)**
+
+## Tech Stack
+
+This application is built using the following technologies:
+
+### Core Infrastructure & Backend
+
+-   **Next.js**: Full-stack React framework (v14+)
+-   **TypeScript**: Type-safe language (v5.0+)
+-   **Node.js**: JavaScript runtime (LTS)
+-   **PostgreSQL**: Relational database (v16+)
+-   **Prisma**: ORM for type-safe data access
+-   **Redis**: In-memory data store
+
+### Frontend & User Interface
+
+-   **React**: UI framework
+-   **tRPC**: Type-safe API layer
+-   **Tailwind CSS**: Utility-first CSS framework
+-   **Shadcn/ui**: Reusable UI components
+-   **Next.js Compiler (SWC)**: Fast build tool
+
+### Development Environment & Tools
+
+-   **Git & GitHub**: Version control
+-   **VS Code/WebStorm**: Code editors
+-   **TablePlus/DBeaver**: Database GUIs
+-   **Prisma CLI**: Database management
+
+### Quality Assurance & Code Standards
+
+-   **Jest & Playwright**: Testing frameworks
+-   **TypeScript Compiler (tsc)**: Static analysis
+-   **ESLint & Prettier**: Linters and formatters
+-   **VS Code Debugger & React Developer Tools**: Debugging tools
