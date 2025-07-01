@@ -1,0 +1,33 @@
+{
+    # Global options
+    email your-email@example.com
+}
+
+# Applications
+admin.your-domain.com {
+    reverse_proxy localhost:3001
+}
+
+blog.your-domain.com {
+    reverse_proxy localhost:3002
+}
+
+codecaddy.your-domain.com {
+    reverse_proxy localhost:3003
+}
+
+dashboard.your-domain.com {
+    reverse_proxy localhost:3004
+}
+
+dunamismax.com {
+    reverse_proxy localhost:3005
+}
+
+trpchat.your-domain.com {
+    reverse_proxy localhost:3006
+}
+
+your-domain.com {
+    reverse_proxy localhost:3000
+}

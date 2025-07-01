@@ -2,11 +2,12 @@
   "name": "codecaddy",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3003",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --fix",
     "db:push": "prisma db push",
     "db:generate": "prisma generate"
   },
@@ -26,14 +27,11 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/eslint": "^8.56.10",
+    "@t3-shipyard/config-eslint": "workspace:*",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.12.0",
-    "@typescript-eslint/parser": "^7.12.0",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.3",
+    "eslint": "^9.3.0",
     "postcss": "^8.4.38",
     "prettier": "^3.3.1",
     "prettier-plugin-tailwindcss": "^0.6.1",

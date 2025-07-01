@@ -6,7 +6,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { api } from '~/utils/api';
 
 const Home: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: 'from tRPC' });
+  
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100">

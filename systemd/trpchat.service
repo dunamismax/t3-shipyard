@@ -3,9 +3,13 @@ Description=PM2 process for trpchat application
 After=network.target
 
 [Service]
-User=your_username
-Group=your_username
-WorkingDirectory=/Users/sawyer/Library/CloudStorage/GoogleDrive-stephenvsawyer@gmail.com/My Drive/github/t3-shipyard/apps/trpchat
+# Replace with your actual user and group
+User=www-data
+Group=www-data
+
+# Replace with the actual path to your project
+WorkingDirectory=/srv/t3-shipyard/apps/trpchat
+
 ExecStart=/usr/bin/pm2 start ecosystem.config.js --env production
 ExecReload=/usr/bin/pm2 reload all
 ExecStop=/usr/bin/pm2 stop all

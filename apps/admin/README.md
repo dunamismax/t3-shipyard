@@ -23,7 +23,7 @@ To run this application locally, follow these steps:
    ```
    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_admin"
    NEXTAUTH_SECRET="YOUR_NEXTAUTH_SECRET" # Generate a strong secret: openssl rand -base64 32
-   NEXTAUTH_URL="http://localhost:3000" # Or your deployment URL
+   NEXTAUTH_URL="http://localhost:3001" # Or your deployment URL
    ```
 
 3. **Run database migrations and generate Prisma client**:
@@ -39,7 +39,7 @@ To run this application locally, follow these steps:
    pnpm dev
    ```
 
-   The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
+   The application will be accessible at `http://localhost:3001`.
 
 ## Project Structure
 

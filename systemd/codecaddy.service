@@ -3,8 +3,13 @@ Description=CodeCaddy Next.js Application
 After=network.target
 
 [Service]
-User=%i
-WorkingDirectory=/home/%i/t3-shipyard/apps/codecaddy
+# Replace with your actual user and group
+User=www-data
+Group=www-data
+
+# Replace with the actual path to your project
+WorkingDirectory=/srv/t3-shipyard/apps/codecaddy
+
 ExecStart=/usr/bin/pm2 start npm --name "codecaddy-app" -- start
 ExecStop=/usr/bin/pm2 stop codecaddy-app
 Restart=always

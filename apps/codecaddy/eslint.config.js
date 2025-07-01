@@ -1,11 +1,6 @@
-/** @type {import('eslint').Linter.Config} */
-const config = {
-  root: true,
-  extends: ["@repo/eslint-config/nextjs.js"],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: true,
-  },
-};
+import nextjs from "@t3-shipyard/config-eslint";
 
-export default config;
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  ...nextjs,
+];

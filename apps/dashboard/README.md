@@ -37,7 +37,7 @@ To run this application locally, follow these steps:
    pnpm dev
    ```
 
-   The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).
+   The application will be accessible at `http://localhost:3004`.
 
 ## Project Structure
 

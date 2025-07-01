@@ -59,7 +59,6 @@ export const snippetRouter = createTRPCRouter({
   search: publicProcedure
     .input(z.object({ query: z.string() }))
     .query(async ({ ctx, input }) => {
-      const searchString = `%${input.query}%`;
       return ctx.prisma.snippet.findMany({
         where: {
           OR: [
