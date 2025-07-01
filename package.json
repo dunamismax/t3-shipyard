@@ -1,6 +1,7 @@
 {
   "name": "t3-shipyard",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
