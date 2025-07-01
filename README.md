@@ -1,14 +1,14 @@
 # t3-shipyard ⚓
 
-Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js applications, leveraging a shared architecture for efficient, scalable, and maintainable project management.
+# t3-shipyard ⚓
+
+Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js applications, each designed to be independent and self-contained.
 
 [![Framework: Next.js](https://img.shields.io/badge/Framework-Next.js-000000.svg)](https://nextjs.org/)
 [![Language: TypeScript](https://img.shields.io/badge/Language-TypeScript-3178C6.svg)](https://www.typescriptlang.org/)
 [![API Layer: tRPC](https://img.shields.io/badge/API%20Layer-tRPC-2596BE.svg)](https://trpc.io/)
 [![Database ORM: Prisma](https://img.shields.io/badge/ORM-Prisma-2D3748.svg)](https://prisma.io/)
 [![Styling: Tailwind CSS](https://img.shields.io/badge/CSS-TailwindCSS-06B6D4.svg)](https://tailwindcss.com/)
-[![Package Manager: pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220.svg)](https://pnpm.io/)
-[![Task Runner: Turborepo](https://img.shields.io/badge/Task%20Runner-Turborepo-6366F1.svg)](https://turbo.build/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/dunamismax/t3-shipyard/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/dunamismax/t3-shipyard/pulls)
 [![GitHub Stars](https://img.shields.io/github/stars/dunamismax/t3-shipyard?style=social)](https://github.com/dunamismax/t3-shipyard/stargazers)
@@ -30,7 +30,7 @@ Welcome to my T3 Stack monorepo. This repository centralizes multiple Next.js ap
 
 ## Introduction
 
-This monorepo serves as the foundation for my full-stack, type-safe web development projects using the T3 Stack. By leveraging a monorepo setup with pnpm and Turborepo, I can efficiently manage multiple Next.js applications that share common dependencies, configurations, and utilities. This approach enhances code reusability, enforces consistency, and simplifies the overall development workflow.
+This monorepo serves as the foundation for my full-stack, type-safe web development projects using the T3 Stack. Each application within this repository is designed to be independent, with its own dependencies, configurations, and build processes. This approach ensures maximum isolation and flexibility for deployment.
 
 ---
 
@@ -42,71 +42,79 @@ The repository is organized to support a scalable and maintainable monorepo arch
 <summary><strong>Click to expand repository layout</strong></summary>
 
 ```
+```
 t3-shipyard/
 ├── apps/                               # Individual Next.js applications
 │   ├── admin/                          # Internal admin panel application
-│   │   ├── package.json
-│   │   ├── next.config.mjs
-│   │   ├── postcss.config.cjs
-│   │   ├── tailwind.config.ts
 │   │   ├── .eslintrc.cjs
-│   │   ├── tsconfig.json
-│   │   └── README.md
-│   ├── blog/                           # Blog application
-│   │   ├── package.json
 │   │   ├── next.config.mjs
+│   │   ├── package.json
 │   │   ├── postcss.config.cjs
+│   │   ├── README.md
 │   │   ├── tailwind.config.ts
-│   │   ├── .eslintrc.cjs
 │   │   ├── tsconfig.json
-│   │   └── README.md
-│   ├── dashboard/                      # Internal dashboard application
-│   │   ├── package.json
-│   │   ├── next.config.mjs
-│   │   ├── postcss.config.cjs
-│   │   ├── tailwind.config.ts
-│   │   ├── .eslintrc.cjs
-│   │   ├── tsconfig.json
-│   │   └── README.md
-│   └── web/                            # Marketing website application
-│       ├── package.json
-│       ├── next.config.mjs
-│       ├── postcss.config.cjs
-│       ├── tailwind.config.ts
-│       ├── .eslintrc.cjs
-│       ├── tsconfig.json
-│       └── README.md
-├── packages/                           # Shared libraries and configurations
-│   ├── config-eslint/                  # ESLint configurations
-│   │   ├── nextjs.js
-│   │   └── package.json
-│   ├── config-tailwind/                # Tailwind CSS configurations
-│   │   ├── package.json
-│   │   └── tailwind.config.ts
-│   ├── config-typescript/              # TypeScript configurations
-│   │   ├── base.json
-│   │   └── package.json
-│   ├── db/                             # Database client and schema
-│   │   ├── index.ts
-│   │   ├── package.json
 │   │   └── prisma/
 │   │       └── schema.prisma
-│   ├── ui/                             # Reusable UI components
-│   │   ├── button.tsx
-│   │   ├── index.tsx
-│   │   └── package.json
-│   └── utils/                          # Common utility functions
-│       └── (placeholder for files)
+│   ├── blog/                           # Blog application
+│   │   ├── .eslintrc.cjs
+│   │   ├── next.config.mjs
+│   │   ├── package.json
+│   │   ├── postcss.config.cjs
+│   │   ├── README.md
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   └── prisma/
+│   │       └── schema.prisma
+│   ├── dashboard/                      # Internal dashboard application
+│   │   ├── .eslintrc.cjs
+│   │   ├── next.config.mjs
+│   │   ├── package.json
+│   │   ├── postcss.config.cjs
+│   │   ├── README.md
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   └── prisma/
+│   │       └── schema.prisma
+│   ├── dunamismax.com/                 # Personal blog and portfolio website
+│   │   ├── .eslintrc.cjs
+│   │   ├── eslint.config.mjs
+│   │   ├── next-env.d.ts
+│   │   ├── next.config.ts
+│   │   ├── package.json
+│   │   ├── pnpm-lock.yaml
+│   │   ├── postcss.config.mjs
+│   │   ├── README.md
+│   │   ├── tailwind.config.ts
+│   │   ├── tsconfig.json
+│   │   ├── prisma/
+│   │   │   └── schema.prisma
+│   │   └── public/
+│   │       ├── file.svg
+│   │       ├── globe.svg
+│   │       ├── next.svg
+│   │       ├── vercel.svg
+│   │       └── window.svg
+│   └── web/                            # Marketing website application
+│       ├── .eslintrc.cjs
+│       ├── next.config.mjs
+│       ├── package.json
+│       ├── postcss.config.cjs
+│       ├── README.md
+│       ├── tailwind.config.ts
+│       ├── tsconfig.json
+│       └── prisma/
+│           └── schema.prisma
 ├── .git/                               # Git version control
 ├── .gitignore                          # Git ignore rules
 ├── .prettierignore                     # Prettier ignore rules
 ├── .prettierrc.cjs                     # Prettier configuration
+├── env.mjs                             # Environment variables
 ├── LICENSE                             # Project license
-├── README.md                           # This README file
 ├── package.json                        # Root pnpm package configuration
 ├── pnpm-workspace.yaml                 # pnpm workspace configuration
 ├── tsconfig.json                       # Root TypeScript configuration
 └── turbo.json                          # Turborepo configuration
+```
 ```
 
 </details>
@@ -140,7 +148,6 @@ This monorepo leverages the T3 Stack, optimized for performance and developer ex
 - **Git & GitHub**: Version control
 - **VS Code/WebStorm**: Code editors
 - **TablePlus/DBeaver**: Database GUIs
-- **pnpm**: Package manager
 - **Prisma CLI**: Database management
 
 ### Quality Assurance
@@ -162,13 +169,17 @@ To get started with this monorepo, follow the steps below.
     cd t3-shipyard
     ```
 
-2. **Install dependencies**:
+2. **Install dependencies for each application**:
+
+    Navigate into each application directory (e.g., `apps/admin`, `apps/blog`) and run:
 
     ```bash
     pnpm install
     ```
 
 3. **Build applications for production**:
+
+    Navigate into each application directory and run:
 
     ```bash
     pnpm build
@@ -216,54 +227,24 @@ To get started with this monorepo, follow the steps below.
 
 ## Projects Overview
 
-This monorepo hosts the following Next.js applications. Each is a self-contained project that benefits from shared packages and a unified development environment.
+This monorepo hosts the following Next.js applications. Each is a self-contained project.
 
-### [Web Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/web)
+### Web Application
 
-The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application within the monorepo.
+The main marketing website for the project. This application showcases public-facing content and features, serving as a primary example of a client-facing application.
 
-### [Dashboard Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/dashboard)
+### Dashboard Application
 
 An internal dashboard for administrative tasks and data visualization. This application demonstrates authenticated routes and complex data interactions, providing a robust interface for internal operations.
 
-### [Blog Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/blog)
+### Blog Application
 
 A content-focused application for publishing articles and updates. This app features dynamic content rendering, tRPC queries and mutations for post management, and basic SEO considerations.
 
-### [Admin Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/admin)
+### Admin Application
 
 A dedicated application for managing users, content, and system settings. This application demonstrates robust authentication with NextAuth.js, protected tRPC routes, and user management features.
 
-### [dunamismax.com](https://github.com/dunamismax/t3-shipyard/tree/main/apps/dunamismax.com)
+### dunamismax.com
 
 My personal blog and developer portfolio website. This application showcases my work, articles, and serves as a comprehensive online presence.
-
----
-
-## Contributing
-
-Contributions are welcome! Please feel free to fork the repository, create a feature branch, and open a pull request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## Connect
-
-Connect with the author, **dunamismax**, on:
-
-- **Twitter:** [@dunamismax](https://twitter.com/dunamismax)
-- **Bluesky:** [@dunamismax.bsky.social](https://bsky.app/profile/dunamismax.bsky.social)
-- **Reddit:** [u/dunamismax](https://www.reddit.com/user/dunamismax)
-- **Discord:** `dunamismax`
-- **Signal:** `dunamismax.66`
-
----
-
-## License
-
-This repository is licensed under the **MIT License**. See the `LICENSE` file for more details.

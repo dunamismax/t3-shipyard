@@ -10,19 +10,25 @@ This application showcases public-facing content and features, built with Next.j
 
 To run this application locally, follow these steps:
 
-1.  **Navigate to the monorepo root**: If you are not already there, change your directory to the `t3-shipyard` root.
-    ```bash
-    cd /path/to/t3-shipyard
-    ```
-
-2.  **Install dependencies**: Ensure all monorepo dependencies are installed.
+1.  **Install dependencies**:
     ```bash
     pnpm install
     ```
 
-3.  **Run the development server**: Start the Next.js development server for the web application.
+2.  **Configure Environment Variables**: Create a `.env` file in the root of this application and add the following variables, replacing with your actual values:
+    ```
+    DATABASE_URL="postgresql://user:password@localhost:5432/t3shipyard_web"
+    ```
+
+3.  **Run database migrations and generate Prisma client**:
     ```bash
-    pnpm --filter @t3-shipyard/web dev
+    pnpm db:push
+    pnpm db:generate
+    ```
+
+4.  **Run the development server**:
+    ```bash
+    pnpm dev
     ```
 
     The application will be accessible at `http://localhost:3000` (or another port if 3000 is in use).

@@ -1,5 +1,13 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
-  extends: [' @t3-shipyard/config-eslint/nextjs.js'],
+  extends: ['next', 'turbo', 'prettier'],
+  rules: {
+    '@next/next/no-html-link-for-pages': 'off',
+  },
+  parserOptions: {
+    babelOptions: {
+      presets: [require.resolve('next/babel')],
+    },
+  },
 };
