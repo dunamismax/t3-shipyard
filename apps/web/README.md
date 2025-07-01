@@ -1,10 +1,8 @@
 # Web Application
 
-This is the main marketing website for the `t3-shipyard` monorepo.
-
 ## Overview
 
-This application showcases public-facing content and features, built with Next.js, tRPC, Prisma, and Tailwind CSS. It serves as a primary example of a client-facing application within the monorepo.
+This application showcases public-facing content and features, built with Next.js, tRPC, Prisma, and Tailwind CSS. It serves as a primary example of a client-facing application.
 
 ## Getting Started
 
@@ -77,6 +75,3 @@ apps/web/
 -   [Prisma Documentation](https://www.prisma.io/docs)
 -   [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
----
-
-**[&#8593; Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard)**

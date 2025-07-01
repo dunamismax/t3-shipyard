@@ -1,1 +1,1 @@
-{ "name": " @t3-shipyard/config-tailwind", "version": "0.1.0", "main": "index.js", "private": true }
+{ "name": "@t3-shipyard/config-tailwind", "version": "0.1.0", "main": "index.js", "private": true }

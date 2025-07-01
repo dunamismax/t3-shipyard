@@ -1,7 +1,5 @@
 # Admin Application
 
-This is the admin application for the `t3-shipyard` monorepo.
-
 ## Overview
 
 This application provides a dedicated interface for managing users, content, and system settings. It demonstrates robust authentication with NextAuth.js, protected tRPC routes, and user management features, built with Next.js, tRPC, Prisma, and Tailwind CSS.
@@ -84,6 +82,3 @@ apps/admin/
 -   [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 -   [NextAuth.js Documentation](https://next-auth.js.org/)
 
----
-
-**[&#8593; Back to Monorepo Root](https://github.com/dunamismax/t3-shipyard)**

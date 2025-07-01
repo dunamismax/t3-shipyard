@@ -1,7 +1,5 @@
 # Blog Application
 
-This is the blog application for the `t3-shipyard` monorepo.
-
 ## Overview
 
 This application is a content-focused platform for publishing articles and updates. It demonstrates dynamic content rendering, tRPC queries and mutations for post management, and basic SEO considerations, built with Next.js, tRPC, Prisma, and Tailwind CSS.

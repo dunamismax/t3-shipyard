@@ -1,5 +1,5 @@
 {
-  "name": " @t3-shipyard/db",
+  "name": "@t3-shipyard/db",
   "version": "0.1.0",
   "main": "./index.ts",
   "types": "./index.ts",
@@ -8,7 +8,7 @@
     "db:push": "prisma db push"
   },
   "dependencies": {
-    " @prisma/client": "^5.14.0"
+    "@prisma/client": "^5.14.0"
   },
   "devDependencies": {
     "prisma": "^5.14.0"
