@@ -1,6 +1,6 @@
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 
-import { type AppRouter } from "~/server/api/root";
+import { type AppRouter } from "@/server/api/root";
 
 /**
  * Inference helper for inputs.

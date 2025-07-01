@@ -1,18 +1,22 @@
 "use client";
 
 import Link from 'next/link';
-import { api } from '~/utils/api';
 
 export default function Home() {
-  const { data: snippets, isLoading } = api.snippet.getAll.useQuery();
-
-  if (isLoading) return <div>Loading snippets...</div>;
+  const mockSnippets = [
+    {
+      id: '1',
+      title: 'Sample React Component',
+      language: 'typescript',
+      tags: [{ id: '1', name: 'react' }, { id: '2', name: 'typescript' }],
+    },
+  ];
 
   return (
     <main className="container mx-auto p-4">
       <h1 className="text-4xl font-bold mb-8">Recent Snippets</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {snippets?.map((snippet) => (
+        {mockSnippets?.map((snippet) => (
           <div key={snippet.id} className="bg-gray-700 p-4 rounded-lg">
             <Link href={`/snippets/${snippet.id}`}>
               <h2 className="text-2xl font-semibold text-white hover:underline">

@@ -1,1 +1,1 @@
-export * from "~/trpc/react";
+export { api } from "~/trpc/react";

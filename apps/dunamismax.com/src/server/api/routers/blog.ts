@@ -9,6 +9,6 @@ export const blogRouter = createTRPCRouter({
   getById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(({ ctx, input }) => {
-      return ctx.prisma.post.findUnique({ where: { id: input.id } })
+      return ctx.prisma.post.findUnique({ where: { id: parseInt(input.id) } })
     }),
 })

@@ -14,7 +14,6 @@ const getBaseUrl = () => {
 export const api = experimental_createTRPCNextAppDirServer<AppRouter>({
   config() {
     return {
-      transformer: superjson,
       links: [
         loggerLink({
           enabled: (opts) =>
@@ -23,9 +22,10 @@ export const api = experimental_createTRPCNextAppDirServer<AppRouter>({
         }),
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
-          headers() {
+          transformer: superjson,
+          async headers() {
             return {
-              ...Object.fromEntries(headers()),
+              ...Object.fromEntries(await headers()),
               "x-trpc-source": "rsc",
             };
           },

@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "~/trpc/react";
+import { api } from "@/trpc/react";
 
 export default function Home() {
   const { data: hello } = api.example.hello.useQuery({ text: "from tRPC" });

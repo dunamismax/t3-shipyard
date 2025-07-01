@@ -1,5 +1,5 @@
-import { createTRPCRouter } from "../trpc";
-import { snippetRouter } from "./snippet";
+import { createTRPCRouter } from "~/server/api/trpc";
+import { snippetRouter } from "~/server/api/routers/snippet";
 
 export const appRouter = createTRPCRouter({
   snippet: snippetRouter,

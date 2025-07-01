@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const snippetRouter = createTRPCRouter({
   create: publicProcedure
@@ -12,7 +12,7 @@ export const snippetRouter = createTRPCRouter({
         tags: z.array(z.string()).optional(),
       }),
     )
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ ctx, input }: { ctx: any; input: any }) => {
       const { title, code, language, tags } = input;
       const snippet = await ctx.prisma.snippet.create({
         data: {
@@ -20,7 +20,7 @@ export const snippetRouter = createTRPCRouter({
           code,
           language,
           tags: {
-            connectOrCreate: tags?.map((tag) => ({
+            connectOrCreate: tags?.map((tag: string) => ({
               where: { name: tag },
               create: { name: tag },
             })),
@@ -30,7 +30,7 @@ export const snippetRouter = createTRPCRouter({
       return snippet;
     }),
 
-  getAll: publicProcedure.query(async ({ ctx }) => {
+  getAll: publicProcedure.query(async ({ ctx }: { ctx: any }) => {
     return ctx.prisma.snippet.findMany({
       orderBy: { createdAt: "desc" },
       include: { tags: true },
@@ -39,7 +39,7 @@ export const snippetRouter = createTRPCRouter({
 
   findById: publicProcedure
     .input(z.object({ id: z.string() }))
-    .query(async ({ ctx, input }) => {
+    .query(async ({ ctx, input }: { ctx: any; input: any }) => {
       return ctx.prisma.snippet.findUnique({
         where: { id: input.id },
         include: { tags: true },
@@ -48,7 +48,7 @@ export const snippetRouter = createTRPCRouter({
 
   findByTag: publicProcedure
     .input(z.object({ tag: z.string() }))
-    .query(async ({ ctx, input }) => {
+    .query(async ({ ctx, input }: { ctx: any; input: any }) => {
       return ctx.prisma.snippet.findMany({
         where: { tags: { some: { name: input.tag } } },
         orderBy: { createdAt: "desc" },
@@ -58,7 +58,7 @@ export const snippetRouter = createTRPCRouter({
 
   search: publicProcedure
     .input(z.object({ query: z.string() }))
-    .query(async ({ ctx, input }) => {
+    .query(async ({ ctx, input }: { ctx: any; input: any }) => {
       return ctx.prisma.snippet.findMany({
         where: {
           OR: [
