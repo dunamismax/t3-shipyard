@@ -30,6 +30,7 @@ export default [
         'warn',
         { argsIgnorePattern: '^_' },
       ],
+      '@typescript-eslint/no-explicit-any': 'off',
     },
     settings: {
       react: {

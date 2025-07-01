@@ -4,7 +4,53 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a T3 Stack monorepo containing multiple Next.js applications with shared tooling and architecture patterns. Each app in the `apps/` directory is independent but follows consistent patterns.
+This is a **T3 Stack monorepo** containing 7 independent Next.js applications with shared tooling and architecture patterns. All apps use **Next.js App Router exclusively** - Pages Router is forbidden and considered legacy.
+
+## Critical Architecture Requirements
+
+### ⚠️ MANDATORY: Next.js App Router Only
+- **ALL apps MUST use Next.js App Router** (`src/app/` directory)
+- **Pages Router is FORBIDDEN** (`src/pages/` directory is legacy)
+- Any references to Pages Router patterns must be migrated to App Router
+
+### ⚠️ Required Configuration Pattern
+All apps must follow this exact configuration:
+
+#### PostCSS Configuration (`postcss.config.cjs`):
+```javascript
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+}
+```
+
+#### TypeScript Configuration (`tsconfig.json`):
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    }
+  }
+}
+```
+
+#### Required Dependencies Pattern:
+Every app must include these devDependencies:
+```json
+{
+  "@eslint/js": "^9.3.0",
+  "@next/eslint-plugin-next": "^15.0.0", 
+  "@tailwindcss/postcss": "4.1.11",
+  "autoprefixer": "^10.4.14",
+  "eslint-config-prettier": "^9.1.0",
+  "globals": "^15.3.0",
+  "postcss": "^8.4.23"
+}
+```
 
 ## Common Development Commands
 
@@ -12,7 +58,7 @@ This is a T3 Stack monorepo containing multiple Next.js applications with shared
 ```bash
 pnpm dev          # Start all apps in development mode
 pnpm build        # Build all apps for production
-pnpm lint         # Lint all apps
+pnpm lint         # Lint all apps (ESLint 9 flat config)
 pnpm db:generate  # Generate Prisma clients for all apps
 pnpm db:push      # Push database changes for all apps
 ```
@@ -28,56 +74,128 @@ pnpm db:generate  # Generate Prisma client
 pnpm db:push      # Push database schema changes
 ```
 
-### App-Specific Ports
-- admin: 3003
-- blog: 3004  
-- codecaddy: 3001
-- dashboard: 3002
-- dunamismax.com: 3005
-- trpchat: 3006 (also has `pnpm ws-dev` for WebSocket development)
-- web: 3000
+### App-Specific Ports (CORRECTED)
+- **admin**: 3001 (User management and admin panel)
+- **blog**: 3002 (Blog posts and content management) 
+- **codecaddy**: 3003 (Code snippet sharing platform)
+- **dashboard**: 3004 (Internal dashboard and analytics)
+- **dunamismax.com**: 3005 (Personal portfolio and blog)
+- **trpchat**: 3006 (Real-time chat with WebSockets - also has `pnpm ws-dev`)
+- **web**: 3000 (Public marketing website)
 
 ## Architecture Patterns
 
-### Standard T3 Stack Structure
-Each app follows this pattern:
+### Standard T3 Stack Structure (App Router)
+Each app follows this **mandatory** pattern:
 ```
 apps/[app-name]/
-├── prisma/schema.prisma     # Database schema
+├── prisma/schema.prisma           # Database schema
+├── postcss.config.cjs             # PostCSS with @tailwindcss/postcss
+├── tailwind.config.ts             # Tailwind CSS configuration
 ├── src/
-│   ├── app/                 # Next.js App Router (newer apps)
-│   │   └── api/trpc/[trpc]/ # tRPC API route
-│   ├── components/          # React components
-│   │   ├── Navbar.tsx       # Standard navigation
-│   │   └── ui/              # Shared UI components
-│   ├── server/              # Backend logic
-│   │   ├── api/             # tRPC routers and config
-│   │   ├── auth/            # NextAuth.js setup
-│   │   └── db/              # Database client
-│   ├── trpc/                # tRPC client setup
-│   └── utils/               # Utility functions
+│   ├── app/                       # Next.js App Router (MANDATORY)
+│   │   ├── api/trpc/[trpc]/       # tRPC API route handler
+│   │   ├── layout.tsx             # Root layout with TRPCReactProvider
+│   │   └── page.tsx               # App pages
+│   ├── components/                # React components
+│   │   ├── Navbar.tsx             # Navigation (simplified for SSR)
+│   │   └── ui/                    # Shared UI components
+│   ├── server/                    # Backend logic
+│   │   ├── api/                   # tRPC routers and config
+│   │   │   ├── root.ts            # Main router export
+│   │   │   ├── trpc.ts            # tRPC context and procedures
+│   │   │   └── routers/           # Individual route handlers
+│   │   └── db/                    # Database client
+│   ├── trpc/                      # tRPC client setup
+│   │   └── react.tsx              # TRPCReactProvider (App Router)
+│   ├── styles/
+│   │   └── globals.css            # Global styles with Tailwind imports
+│   └── utils/                     # Utility functions
 └── [config files]
 ```
 
+### tRPC App Router Setup (CRITICAL)
+
+#### Server Context (`src/server/api/trpc.ts`):
+```typescript
+export const createTRPCContext = (_opts: { req: NextRequest }) => {
+  return { prisma }
+}
+
+const t = initTRPC.context<typeof createTRPCContext>().create({
+  transformer: superjson,
+})
+```
+
+#### API Route Handler (`src/app/api/trpc/[trpc]/route.ts`):
+```typescript
+import { fetchRequestHandler } from '@trpc/server/adapters/fetch'
+import { createTRPCContext } from '~/server/api/trpc'
+
+const handler = (req: NextRequest) =>
+  fetchRequestHandler({
+    endpoint: '/api/trpc',
+    req,
+    router: appRouter,
+    createContext: () => createTRPCContext({ req }),
+  })
+
+export { handler as GET, handler as POST }
+```
+
+#### Client Provider (`src/trpc/react.tsx`):
+```typescript
+'use client'
+
+export const api = createTRPCReact<AppRouter>()
+
+export function TRPCReactProvider(props: { children: React.ReactNode }) {
+  const [trpcClient] = useState(() =>
+    api.createClient({
+      links: [
+        httpBatchLink({
+          url: `${getBaseUrl()}/api/trpc`,
+          transformer: superjson,
+        }),
+      ],
+    })
+  )
+  // ... rest of provider setup
+}
+```
+
+#### Layout Integration (`src/app/layout.tsx`):
+```typescript
+import { TRPCReactProvider } from '~/trpc/react'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html>
+      <body>
+        <TRPCReactProvider>{children}</TRPCReactProvider>
+      </body>
+    </html>
+  )
+}
+```
+
 ### tRPC Router Patterns
-- All apps have `example.ts` router with hello, getAll, getSecretMessage procedures
-- App-specific routers based on domain:
-  - `user.ts` (admin) - User management
-  - `post.ts` (blog) - Blog posts
-  - `snippet.ts` (codecaddy) - Code snippets
-  - `chat.ts` (trpchat) - Chat functionality
-  - `blog.ts`, `portfolio.ts` (dunamismax.com) - Personal website
+- All apps have `example.ts` router with hello procedure
+- App-specific routers by domain:
+  - **admin**: `user.ts` - User management
+  - **blog**: `post.ts` - Blog posts and content
+  - **codecaddy**: `snippet.ts` - Code snippets with tags
+  - **dashboard**: `example.ts` - Basic dashboard data
+  - **dunamismax.com**: `blog.ts`, `portfolio.ts` - Personal content
+  - **trpchat**: `chat.ts` - Real-time messaging
+  - **web**: `example.ts` - Marketing content
 
 ### Database Setup
-- All apps use PostgreSQL with Prisma ORM
-- Standard models: User (NextAuth compatible), Post (example)
-- App-specific models as needed (Snippet, Tag, Project, etc.)
-- Database migrations via `prisma db push`
-
-### Authentication
-- NextAuth.js setup in most apps via `src/server/auth/index.ts`
-- Protected procedures use `protectedProcedure` in tRPC routers
-- Session management integrated with tRPC context
+- All apps use **PostgreSQL** with **Prisma ORM 6.11.0**
+- Each app has independent database and schema
+- Standard models: User (NextAuth compatible), Post
+- App-specific models: Snippet+Tag (codecaddy), Message (trpchat), Project (dunamismax)
+- Database operations via `prisma db push` (no migrations)
 
 ## Technology Stack
 
@@ -190,35 +308,46 @@ This monorepo follows **The T3 Stack: A Self-Hosted Architecture** - a high-perf
 - VS Code: Step-debugging backend code
 - React DevTools: Frontend component tree and state inspection
 
-## Critical Architecture Requirements
+## Known Issues and Common Fixes
 
-### App Router Standard
-- **MANDATORY:** All apps MUST use Next.js App Router (`app` directory)
-- **FORBIDDEN:** Pages Router (`pages` directory) is legacy and must not be used
-- Any apps still using Pages Router must be migrated to App Router
+### When Apps Fail to Build
+If any app fails to build, apply these fixes in order:
 
-### Unique App Features
-- **trpchat**: WebSocket server for real-time chat (`src/server/wsServer.ts`)
-- **codecaddy**: Code snippet management with syntax highlighting
-- **dunamismax.com**: Personal portfolio and blog
+1. **PostCSS Issues**: Ensure `postcss.config.cjs` has the correct format
+2. **Missing Dependencies**: Add required devDependencies pattern 
+3. **Path Resolution**: Update `tsconfig.json` to use `~/*` paths
+4. **tRPC Context**: Fix server context for App Router compatibility
+5. **Client Components**: Add `"use client"` to components using hooks
+6. **Import Paths**: Update all imports to use `~/*` pattern
 
-### Production Deployment
-- systemd service files in `/systemd/` directory
-- PM2 process management
-- Caddy reverse proxy configuration
-- Each app runs on different port in production
+### ESLint 9 Troubleshooting
+- Uses flat config (`eslint.config.js` not `.eslintrc.*`)
+- Requires `globals` package for proper configuration
+- Build ignores are set in root `eslint.config.js`
 
-## Environment Setup
+### TailwindCSS v4 Issues
+- Must use `@tailwindcss/postcss` plugin (not `tailwindcss` directly)
+- Config format should be CommonJS for compatibility
 
-### Required Services
-- PostgreSQL database
-- Redis (for some apps)
-- Node.js Latest LTS
+## Production Architecture
 
-### Development Environment
-- VS Code or WebStorm recommended
-- TablePlus for database management
-- Local PostgreSQL and Redis installations
+### Deployment Pattern
+- **systemd service files** in `/systemd/` directory for each app
+- **PM2 process management** with automatic restarts and clustering
+- **Caddy reverse proxy** with automatic HTTPS and SSL termination
+- **Each app runs on independent ports** (3000-3006)
+
+### Self-Hosted Infrastructure
+- **Ubuntu Server** (Latest LTS) as host OS
+- **PostgreSQL 16+** as primary database
+- **Redis** for caching and sessions
+- **Node.js** (Latest LTS) as runtime
+
+### App Independence
+- **95% isolation** - apps share only development tooling
+- **Separate databases** - each app has own schema and connection
+- **Independent deployments** - can deploy, scale, start/stop individually
+- **No runtime dependencies** between apps
 
 ## ESLint 9 Flat Configuration
 

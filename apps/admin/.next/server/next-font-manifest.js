@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/sawyer/Library/CloudStorage/GoogleDrive-stephenvsawyer@gmail.com/My Drive/github/t3-shipyard/apps/admin/src/app/layout":["static/media/e4af272ccee01ff0-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
