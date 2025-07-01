@@ -251,6 +251,10 @@ A content-focused application for publishing articles and updates. This app feat
 
 A dedicated application for managing users, content, and system settings. This application demonstrates robust authentication with NextAuth.js, protected tRPC routes, and user management features.
 
+### [dunamismax.com](https://github.com/dunamismax/t3-shipyard/tree/main/apps/dunamismax.com)
+
+My personal blog and developer portfolio website. This application showcases my work, articles, and serves as a comprehensive online presence.
+
 ---
 
 ## Contributing
