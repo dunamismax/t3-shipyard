@@ -268,6 +268,10 @@ The main marketing website for the project. This application showcases public-fa
 
 A real-time chat application similar to Slack or Discord, built to explore WebSockets with tRPC for real-time communication.
 
+### [CodeCaddy Application](https://github.com/dunamismax/t3-shipyard/tree/main/apps/codecaddy)
+
+A minimalist and fast platform for developers to publicly save, tag, and discover code snippets.
+
 ---
 
 ## Contributing
